@@ -1,7 +1,8 @@
 "use client";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Mic, Leaf, Home, Package, X } from "lucide-react";
+import { Mic, Leaf, Home, Package, X, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -183,11 +184,24 @@ export default function VoiceForm() {
   }
 
   async function onSubmit() {
-    alert(
-      `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
-    );
-    await speak("आपका ट्रक आने वाला है कुछ समय के लिए इंतज़ार करे");
+    const res = await fetch("/api/voice-response", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(responses),
+    });
+
+    if (res.ok) {
+      alert(
+        `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
+      );
+      await speak("आपका ट्रक आने वाला है कुछ समय के लिए इंतज़ार करे");
+    } else {
+      alert("डेटा सेव करने में त्रुटि हुई। कृपया पुनः प्रयास करें।");
+    }
   }
+
   return (
     <div className="max-w-2xl mx-auto mt-20 p-4">
       <div className="flex flex-col items-center mb-6 relative">
@@ -240,7 +254,9 @@ export default function VoiceForm() {
           onClick={onSubmit}
           disabled={!submitEnabled}
           className={`mt-6 max-w-sm py-2 px-4 rounded-xl font-semibold transition cursor-pointer ${
-            submitEnabled ? "bg-indigo-600 hover:bg-indigo-700 text-white" : "bg-gray-400"
+            submitEnabled
+              ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+              : "bg-gray-400"
           }`}
         >
           भेजिए ट्रक

@@ -23,6 +23,11 @@ export type MandiLatLong = $Result.DefaultSelection<Prisma.$MandiLatLongPayload>
  * 
  */
 export type Truck = $Result.DefaultSelection<Prisma.$TruckPayload>
+/**
+ * Model VoiceResponse
+ * 
+ */
+export type VoiceResponse = $Result.DefaultSelection<Prisma.$VoiceResponsePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get truck(): Prisma.TruckDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.voiceResponse`: Exposes CRUD operations for the **VoiceResponse** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VoiceResponses
+    * const voiceResponses = await prisma.voiceResponse.findMany()
+    * ```
+    */
+  get voiceResponse(): Prisma.VoiceResponseDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +624,8 @@ export namespace Prisma {
 
   export const ModelName: {
     MandiLatLong: 'MandiLatLong',
-    Truck: 'Truck'
+    Truck: 'Truck',
+    VoiceResponse: 'VoiceResponse'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "mandiLatLong" | "truck"
+      modelProps: "mandiLatLong" | "truck" | "voiceResponse"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +796,80 @@ export namespace Prisma {
           }
         }
       }
+      VoiceResponse: {
+        payload: Prisma.$VoiceResponsePayload<ExtArgs>
+        fields: Prisma.VoiceResponseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VoiceResponseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VoiceResponseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>
+          }
+          findFirst: {
+            args: Prisma.VoiceResponseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VoiceResponseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>
+          }
+          findMany: {
+            args: Prisma.VoiceResponseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>[]
+          }
+          create: {
+            args: Prisma.VoiceResponseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>
+          }
+          createMany: {
+            args: Prisma.VoiceResponseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VoiceResponseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>[]
+          }
+          delete: {
+            args: Prisma.VoiceResponseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>
+          }
+          update: {
+            args: Prisma.VoiceResponseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>
+          }
+          deleteMany: {
+            args: Prisma.VoiceResponseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VoiceResponseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VoiceResponseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>[]
+          }
+          upsert: {
+            args: Prisma.VoiceResponseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoiceResponsePayload>
+          }
+          aggregate: {
+            args: Prisma.VoiceResponseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVoiceResponse>
+          }
+          groupBy: {
+            args: Prisma.VoiceResponseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VoiceResponseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VoiceResponseCountArgs<ExtArgs>
+            result: $Utils.Optional<VoiceResponseCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +956,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     mandiLatLong?: MandiLatLongOmit
     truck?: TruckOmit
+    voiceResponse?: VoiceResponseOmit
   }
 
   /* Types for Logging */
@@ -988,6 +1079,7 @@ export namespace Prisma {
     id: number | null
     State: string | null
     Mandi: string | null
+    Mandi_Hindi: string | null
     Latitude: number | null
     Longitude: number | null
   }
@@ -996,6 +1088,7 @@ export namespace Prisma {
     id: number | null
     State: string | null
     Mandi: string | null
+    Mandi_Hindi: string | null
     Latitude: number | null
     Longitude: number | null
   }
@@ -1004,6 +1097,7 @@ export namespace Prisma {
     id: number
     State: number
     Mandi: number
+    Mandi_Hindi: number
     Latitude: number
     Longitude: number
     _all: number
@@ -1026,6 +1120,7 @@ export namespace Prisma {
     id?: true
     State?: true
     Mandi?: true
+    Mandi_Hindi?: true
     Latitude?: true
     Longitude?: true
   }
@@ -1034,6 +1129,7 @@ export namespace Prisma {
     id?: true
     State?: true
     Mandi?: true
+    Mandi_Hindi?: true
     Latitude?: true
     Longitude?: true
   }
@@ -1042,6 +1138,7 @@ export namespace Prisma {
     id?: true
     State?: true
     Mandi?: true
+    Mandi_Hindi?: true
     Latitude?: true
     Longitude?: true
     _all?: true
@@ -1137,6 +1234,7 @@ export namespace Prisma {
     id: number
     State: string
     Mandi: string
+    Mandi_Hindi: string
     Latitude: number | null
     Longitude: number | null
     _count: MandiLatLongCountAggregateOutputType | null
@@ -1164,6 +1262,7 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     Mandi?: boolean
+    Mandi_Hindi?: boolean
     Latitude?: boolean
     Longitude?: boolean
   }, ExtArgs["result"]["mandiLatLong"]>
@@ -1172,6 +1271,7 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     Mandi?: boolean
+    Mandi_Hindi?: boolean
     Latitude?: boolean
     Longitude?: boolean
   }, ExtArgs["result"]["mandiLatLong"]>
@@ -1180,6 +1280,7 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     Mandi?: boolean
+    Mandi_Hindi?: boolean
     Latitude?: boolean
     Longitude?: boolean
   }, ExtArgs["result"]["mandiLatLong"]>
@@ -1188,11 +1289,12 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     Mandi?: boolean
+    Mandi_Hindi?: boolean
     Latitude?: boolean
     Longitude?: boolean
   }
 
-  export type MandiLatLongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "State" | "Mandi" | "Latitude" | "Longitude", ExtArgs["result"]["mandiLatLong"]>
+  export type MandiLatLongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "State" | "Mandi" | "Mandi_Hindi" | "Latitude" | "Longitude", ExtArgs["result"]["mandiLatLong"]>
 
   export type $MandiLatLongPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MandiLatLong"
@@ -1201,6 +1303,7 @@ export namespace Prisma {
       id: number
       State: string
       Mandi: string
+      Mandi_Hindi: string
       Latitude: number | null
       Longitude: number | null
     }, ExtArgs["result"]["mandiLatLong"]>
@@ -1629,6 +1732,7 @@ export namespace Prisma {
     readonly id: FieldRef<"MandiLatLong", 'Int'>
     readonly State: FieldRef<"MandiLatLong", 'String'>
     readonly Mandi: FieldRef<"MandiLatLong", 'String'>
+    readonly Mandi_Hindi: FieldRef<"MandiLatLong", 'String'>
     readonly Latitude: FieldRef<"MandiLatLong", 'Float'>
     readonly Longitude: FieldRef<"MandiLatLong", 'Float'>
   }
@@ -2025,6 +2129,7 @@ export namespace Prisma {
     id: number | null
     State: string | null
     TruckDriverName: string | null
+    TruckDriverName_Hindi: string | null
     TruckNumberPlate: string | null
     Latitude: number | null
     Longitude: number | null
@@ -2034,6 +2139,7 @@ export namespace Prisma {
     id: number | null
     State: string | null
     TruckDriverName: string | null
+    TruckDriverName_Hindi: string | null
     TruckNumberPlate: string | null
     Latitude: number | null
     Longitude: number | null
@@ -2043,6 +2149,7 @@ export namespace Prisma {
     id: number
     State: number
     TruckDriverName: number
+    TruckDriverName_Hindi: number
     TruckNumberPlate: number
     Latitude: number
     Longitude: number
@@ -2066,6 +2173,7 @@ export namespace Prisma {
     id?: true
     State?: true
     TruckDriverName?: true
+    TruckDriverName_Hindi?: true
     TruckNumberPlate?: true
     Latitude?: true
     Longitude?: true
@@ -2075,6 +2183,7 @@ export namespace Prisma {
     id?: true
     State?: true
     TruckDriverName?: true
+    TruckDriverName_Hindi?: true
     TruckNumberPlate?: true
     Latitude?: true
     Longitude?: true
@@ -2084,6 +2193,7 @@ export namespace Prisma {
     id?: true
     State?: true
     TruckDriverName?: true
+    TruckDriverName_Hindi?: true
     TruckNumberPlate?: true
     Latitude?: true
     Longitude?: true
@@ -2180,6 +2290,7 @@ export namespace Prisma {
     id: number
     State: string
     TruckDriverName: string
+    TruckDriverName_Hindi: string
     TruckNumberPlate: string
     Latitude: number | null
     Longitude: number | null
@@ -2208,6 +2319,7 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     TruckDriverName?: boolean
+    TruckDriverName_Hindi?: boolean
     TruckNumberPlate?: boolean
     Latitude?: boolean
     Longitude?: boolean
@@ -2217,6 +2329,7 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     TruckDriverName?: boolean
+    TruckDriverName_Hindi?: boolean
     TruckNumberPlate?: boolean
     Latitude?: boolean
     Longitude?: boolean
@@ -2226,6 +2339,7 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     TruckDriverName?: boolean
+    TruckDriverName_Hindi?: boolean
     TruckNumberPlate?: boolean
     Latitude?: boolean
     Longitude?: boolean
@@ -2235,12 +2349,13 @@ export namespace Prisma {
     id?: boolean
     State?: boolean
     TruckDriverName?: boolean
+    TruckDriverName_Hindi?: boolean
     TruckNumberPlate?: boolean
     Latitude?: boolean
     Longitude?: boolean
   }
 
-  export type TruckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "State" | "TruckDriverName" | "TruckNumberPlate" | "Latitude" | "Longitude", ExtArgs["result"]["truck"]>
+  export type TruckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "State" | "TruckDriverName" | "TruckDriverName_Hindi" | "TruckNumberPlate" | "Latitude" | "Longitude", ExtArgs["result"]["truck"]>
 
   export type $TruckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Truck"
@@ -2249,6 +2364,7 @@ export namespace Prisma {
       id: number
       State: string
       TruckDriverName: string
+      TruckDriverName_Hindi: string
       TruckNumberPlate: string
       Latitude: number | null
       Longitude: number | null
@@ -2678,6 +2794,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Truck", 'Int'>
     readonly State: FieldRef<"Truck", 'String'>
     readonly TruckDriverName: FieldRef<"Truck", 'String'>
+    readonly TruckDriverName_Hindi: FieldRef<"Truck", 'String'>
     readonly TruckNumberPlate: FieldRef<"Truck", 'String'>
     readonly Latitude: FieldRef<"Truck", 'Float'>
     readonly Longitude: FieldRef<"Truck", 'Float'>
@@ -3048,6 +3165,1001 @@ export namespace Prisma {
 
 
   /**
+   * Model VoiceResponse
+   */
+
+  export type AggregateVoiceResponse = {
+    _count: VoiceResponseCountAggregateOutputType | null
+    _min: VoiceResponseMinAggregateOutputType | null
+    _max: VoiceResponseMaxAggregateOutputType | null
+  }
+
+  export type VoiceResponseMinAggregateOutputType = {
+    id: string | null
+    crop: string | null
+    market: string | null
+    quantity: string | null
+    createdAt: Date | null
+  }
+
+  export type VoiceResponseMaxAggregateOutputType = {
+    id: string | null
+    crop: string | null
+    market: string | null
+    quantity: string | null
+    createdAt: Date | null
+  }
+
+  export type VoiceResponseCountAggregateOutputType = {
+    id: number
+    crop: number
+    market: number
+    quantity: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type VoiceResponseMinAggregateInputType = {
+    id?: true
+    crop?: true
+    market?: true
+    quantity?: true
+    createdAt?: true
+  }
+
+  export type VoiceResponseMaxAggregateInputType = {
+    id?: true
+    crop?: true
+    market?: true
+    quantity?: true
+    createdAt?: true
+  }
+
+  export type VoiceResponseCountAggregateInputType = {
+    id?: true
+    crop?: true
+    market?: true
+    quantity?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type VoiceResponseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VoiceResponse to aggregate.
+     */
+    where?: VoiceResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoiceResponses to fetch.
+     */
+    orderBy?: VoiceResponseOrderByWithRelationInput | VoiceResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VoiceResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoiceResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoiceResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VoiceResponses
+    **/
+    _count?: true | VoiceResponseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VoiceResponseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VoiceResponseMaxAggregateInputType
+  }
+
+  export type GetVoiceResponseAggregateType<T extends VoiceResponseAggregateArgs> = {
+        [P in keyof T & keyof AggregateVoiceResponse]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVoiceResponse[P]>
+      : GetScalarType<T[P], AggregateVoiceResponse[P]>
+  }
+
+
+
+
+  export type VoiceResponseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VoiceResponseWhereInput
+    orderBy?: VoiceResponseOrderByWithAggregationInput | VoiceResponseOrderByWithAggregationInput[]
+    by: VoiceResponseScalarFieldEnum[] | VoiceResponseScalarFieldEnum
+    having?: VoiceResponseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VoiceResponseCountAggregateInputType | true
+    _min?: VoiceResponseMinAggregateInputType
+    _max?: VoiceResponseMaxAggregateInputType
+  }
+
+  export type VoiceResponseGroupByOutputType = {
+    id: string
+    crop: string
+    market: string
+    quantity: string
+    createdAt: Date
+    _count: VoiceResponseCountAggregateOutputType | null
+    _min: VoiceResponseMinAggregateOutputType | null
+    _max: VoiceResponseMaxAggregateOutputType | null
+  }
+
+  type GetVoiceResponseGroupByPayload<T extends VoiceResponseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VoiceResponseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VoiceResponseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VoiceResponseGroupByOutputType[P]>
+            : GetScalarType<T[P], VoiceResponseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VoiceResponseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    crop?: boolean
+    market?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["voiceResponse"]>
+
+  export type VoiceResponseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    crop?: boolean
+    market?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["voiceResponse"]>
+
+  export type VoiceResponseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    crop?: boolean
+    market?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["voiceResponse"]>
+
+  export type VoiceResponseSelectScalar = {
+    id?: boolean
+    crop?: boolean
+    market?: boolean
+    quantity?: boolean
+    createdAt?: boolean
+  }
+
+  export type VoiceResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "crop" | "market" | "quantity" | "createdAt", ExtArgs["result"]["voiceResponse"]>
+
+  export type $VoiceResponsePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VoiceResponse"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      crop: string
+      market: string
+      quantity: string
+      createdAt: Date
+    }, ExtArgs["result"]["voiceResponse"]>
+    composites: {}
+  }
+
+  type VoiceResponseGetPayload<S extends boolean | null | undefined | VoiceResponseDefaultArgs> = $Result.GetResult<Prisma.$VoiceResponsePayload, S>
+
+  type VoiceResponseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VoiceResponseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VoiceResponseCountAggregateInputType | true
+    }
+
+  export interface VoiceResponseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VoiceResponse'], meta: { name: 'VoiceResponse' } }
+    /**
+     * Find zero or one VoiceResponse that matches the filter.
+     * @param {VoiceResponseFindUniqueArgs} args - Arguments to find a VoiceResponse
+     * @example
+     * // Get one VoiceResponse
+     * const voiceResponse = await prisma.voiceResponse.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VoiceResponseFindUniqueArgs>(args: SelectSubset<T, VoiceResponseFindUniqueArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VoiceResponse that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VoiceResponseFindUniqueOrThrowArgs} args - Arguments to find a VoiceResponse
+     * @example
+     * // Get one VoiceResponse
+     * const voiceResponse = await prisma.voiceResponse.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VoiceResponseFindUniqueOrThrowArgs>(args: SelectSubset<T, VoiceResponseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VoiceResponse that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoiceResponseFindFirstArgs} args - Arguments to find a VoiceResponse
+     * @example
+     * // Get one VoiceResponse
+     * const voiceResponse = await prisma.voiceResponse.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VoiceResponseFindFirstArgs>(args?: SelectSubset<T, VoiceResponseFindFirstArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VoiceResponse that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoiceResponseFindFirstOrThrowArgs} args - Arguments to find a VoiceResponse
+     * @example
+     * // Get one VoiceResponse
+     * const voiceResponse = await prisma.voiceResponse.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VoiceResponseFindFirstOrThrowArgs>(args?: SelectSubset<T, VoiceResponseFindFirstOrThrowArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VoiceResponses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoiceResponseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VoiceResponses
+     * const voiceResponses = await prisma.voiceResponse.findMany()
+     * 
+     * // Get first 10 VoiceResponses
+     * const voiceResponses = await prisma.voiceResponse.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const voiceResponseWithIdOnly = await prisma.voiceResponse.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VoiceResponseFindManyArgs>(args?: SelectSubset<T, VoiceResponseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VoiceResponse.
+     * @param {VoiceResponseCreateArgs} args - Arguments to create a VoiceResponse.
+     * @example
+     * // Create one VoiceResponse
+     * const VoiceResponse = await prisma.voiceResponse.create({
+     *   data: {
+     *     // ... data to create a VoiceResponse
+     *   }
+     * })
+     * 
+     */
+    create<T extends VoiceResponseCreateArgs>(args: SelectSubset<T, VoiceResponseCreateArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VoiceResponses.
+     * @param {VoiceResponseCreateManyArgs} args - Arguments to create many VoiceResponses.
+     * @example
+     * // Create many VoiceResponses
+     * const voiceResponse = await prisma.voiceResponse.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VoiceResponseCreateManyArgs>(args?: SelectSubset<T, VoiceResponseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VoiceResponses and returns the data saved in the database.
+     * @param {VoiceResponseCreateManyAndReturnArgs} args - Arguments to create many VoiceResponses.
+     * @example
+     * // Create many VoiceResponses
+     * const voiceResponse = await prisma.voiceResponse.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VoiceResponses and only return the `id`
+     * const voiceResponseWithIdOnly = await prisma.voiceResponse.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VoiceResponseCreateManyAndReturnArgs>(args?: SelectSubset<T, VoiceResponseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VoiceResponse.
+     * @param {VoiceResponseDeleteArgs} args - Arguments to delete one VoiceResponse.
+     * @example
+     * // Delete one VoiceResponse
+     * const VoiceResponse = await prisma.voiceResponse.delete({
+     *   where: {
+     *     // ... filter to delete one VoiceResponse
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VoiceResponseDeleteArgs>(args: SelectSubset<T, VoiceResponseDeleteArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VoiceResponse.
+     * @param {VoiceResponseUpdateArgs} args - Arguments to update one VoiceResponse.
+     * @example
+     * // Update one VoiceResponse
+     * const voiceResponse = await prisma.voiceResponse.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VoiceResponseUpdateArgs>(args: SelectSubset<T, VoiceResponseUpdateArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VoiceResponses.
+     * @param {VoiceResponseDeleteManyArgs} args - Arguments to filter VoiceResponses to delete.
+     * @example
+     * // Delete a few VoiceResponses
+     * const { count } = await prisma.voiceResponse.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VoiceResponseDeleteManyArgs>(args?: SelectSubset<T, VoiceResponseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VoiceResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoiceResponseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VoiceResponses
+     * const voiceResponse = await prisma.voiceResponse.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VoiceResponseUpdateManyArgs>(args: SelectSubset<T, VoiceResponseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VoiceResponses and returns the data updated in the database.
+     * @param {VoiceResponseUpdateManyAndReturnArgs} args - Arguments to update many VoiceResponses.
+     * @example
+     * // Update many VoiceResponses
+     * const voiceResponse = await prisma.voiceResponse.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VoiceResponses and only return the `id`
+     * const voiceResponseWithIdOnly = await prisma.voiceResponse.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VoiceResponseUpdateManyAndReturnArgs>(args: SelectSubset<T, VoiceResponseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VoiceResponse.
+     * @param {VoiceResponseUpsertArgs} args - Arguments to update or create a VoiceResponse.
+     * @example
+     * // Update or create a VoiceResponse
+     * const voiceResponse = await prisma.voiceResponse.upsert({
+     *   create: {
+     *     // ... data to create a VoiceResponse
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VoiceResponse we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VoiceResponseUpsertArgs>(args: SelectSubset<T, VoiceResponseUpsertArgs<ExtArgs>>): Prisma__VoiceResponseClient<$Result.GetResult<Prisma.$VoiceResponsePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VoiceResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoiceResponseCountArgs} args - Arguments to filter VoiceResponses to count.
+     * @example
+     * // Count the number of VoiceResponses
+     * const count = await prisma.voiceResponse.count({
+     *   where: {
+     *     // ... the filter for the VoiceResponses we want to count
+     *   }
+     * })
+    **/
+    count<T extends VoiceResponseCountArgs>(
+      args?: Subset<T, VoiceResponseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VoiceResponseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VoiceResponse.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoiceResponseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VoiceResponseAggregateArgs>(args: Subset<T, VoiceResponseAggregateArgs>): Prisma.PrismaPromise<GetVoiceResponseAggregateType<T>>
+
+    /**
+     * Group by VoiceResponse.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoiceResponseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VoiceResponseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VoiceResponseGroupByArgs['orderBy'] }
+        : { orderBy?: VoiceResponseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VoiceResponseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVoiceResponseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VoiceResponse model
+   */
+  readonly fields: VoiceResponseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VoiceResponse.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VoiceResponseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VoiceResponse model
+   */
+  interface VoiceResponseFieldRefs {
+    readonly id: FieldRef<"VoiceResponse", 'String'>
+    readonly crop: FieldRef<"VoiceResponse", 'String'>
+    readonly market: FieldRef<"VoiceResponse", 'String'>
+    readonly quantity: FieldRef<"VoiceResponse", 'String'>
+    readonly createdAt: FieldRef<"VoiceResponse", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VoiceResponse findUnique
+   */
+  export type VoiceResponseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * Filter, which VoiceResponse to fetch.
+     */
+    where: VoiceResponseWhereUniqueInput
+  }
+
+  /**
+   * VoiceResponse findUniqueOrThrow
+   */
+  export type VoiceResponseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * Filter, which VoiceResponse to fetch.
+     */
+    where: VoiceResponseWhereUniqueInput
+  }
+
+  /**
+   * VoiceResponse findFirst
+   */
+  export type VoiceResponseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * Filter, which VoiceResponse to fetch.
+     */
+    where?: VoiceResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoiceResponses to fetch.
+     */
+    orderBy?: VoiceResponseOrderByWithRelationInput | VoiceResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VoiceResponses.
+     */
+    cursor?: VoiceResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoiceResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoiceResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VoiceResponses.
+     */
+    distinct?: VoiceResponseScalarFieldEnum | VoiceResponseScalarFieldEnum[]
+  }
+
+  /**
+   * VoiceResponse findFirstOrThrow
+   */
+  export type VoiceResponseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * Filter, which VoiceResponse to fetch.
+     */
+    where?: VoiceResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoiceResponses to fetch.
+     */
+    orderBy?: VoiceResponseOrderByWithRelationInput | VoiceResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VoiceResponses.
+     */
+    cursor?: VoiceResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoiceResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoiceResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VoiceResponses.
+     */
+    distinct?: VoiceResponseScalarFieldEnum | VoiceResponseScalarFieldEnum[]
+  }
+
+  /**
+   * VoiceResponse findMany
+   */
+  export type VoiceResponseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * Filter, which VoiceResponses to fetch.
+     */
+    where?: VoiceResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoiceResponses to fetch.
+     */
+    orderBy?: VoiceResponseOrderByWithRelationInput | VoiceResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VoiceResponses.
+     */
+    cursor?: VoiceResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoiceResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoiceResponses.
+     */
+    skip?: number
+    distinct?: VoiceResponseScalarFieldEnum | VoiceResponseScalarFieldEnum[]
+  }
+
+  /**
+   * VoiceResponse create
+   */
+  export type VoiceResponseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VoiceResponse.
+     */
+    data: XOR<VoiceResponseCreateInput, VoiceResponseUncheckedCreateInput>
+  }
+
+  /**
+   * VoiceResponse createMany
+   */
+  export type VoiceResponseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VoiceResponses.
+     */
+    data: VoiceResponseCreateManyInput | VoiceResponseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VoiceResponse createManyAndReturn
+   */
+  export type VoiceResponseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * The data used to create many VoiceResponses.
+     */
+    data: VoiceResponseCreateManyInput | VoiceResponseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VoiceResponse update
+   */
+  export type VoiceResponseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VoiceResponse.
+     */
+    data: XOR<VoiceResponseUpdateInput, VoiceResponseUncheckedUpdateInput>
+    /**
+     * Choose, which VoiceResponse to update.
+     */
+    where: VoiceResponseWhereUniqueInput
+  }
+
+  /**
+   * VoiceResponse updateMany
+   */
+  export type VoiceResponseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VoiceResponses.
+     */
+    data: XOR<VoiceResponseUpdateManyMutationInput, VoiceResponseUncheckedUpdateManyInput>
+    /**
+     * Filter which VoiceResponses to update
+     */
+    where?: VoiceResponseWhereInput
+    /**
+     * Limit how many VoiceResponses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VoiceResponse updateManyAndReturn
+   */
+  export type VoiceResponseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * The data used to update VoiceResponses.
+     */
+    data: XOR<VoiceResponseUpdateManyMutationInput, VoiceResponseUncheckedUpdateManyInput>
+    /**
+     * Filter which VoiceResponses to update
+     */
+    where?: VoiceResponseWhereInput
+    /**
+     * Limit how many VoiceResponses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VoiceResponse upsert
+   */
+  export type VoiceResponseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VoiceResponse to update in case it exists.
+     */
+    where: VoiceResponseWhereUniqueInput
+    /**
+     * In case the VoiceResponse found by the `where` argument doesn't exist, create a new VoiceResponse with this data.
+     */
+    create: XOR<VoiceResponseCreateInput, VoiceResponseUncheckedCreateInput>
+    /**
+     * In case the VoiceResponse was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VoiceResponseUpdateInput, VoiceResponseUncheckedUpdateInput>
+  }
+
+  /**
+   * VoiceResponse delete
+   */
+  export type VoiceResponseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+    /**
+     * Filter which VoiceResponse to delete.
+     */
+    where: VoiceResponseWhereUniqueInput
+  }
+
+  /**
+   * VoiceResponse deleteMany
+   */
+  export type VoiceResponseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VoiceResponses to delete
+     */
+    where?: VoiceResponseWhereInput
+    /**
+     * Limit how many VoiceResponses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VoiceResponse without action
+   */
+  export type VoiceResponseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoiceResponse
+     */
+    select?: VoiceResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoiceResponse
+     */
+    omit?: VoiceResponseOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3065,6 +4177,7 @@ export namespace Prisma {
     id: 'id',
     State: 'State',
     Mandi: 'Mandi',
+    Mandi_Hindi: 'Mandi_Hindi',
     Latitude: 'Latitude',
     Longitude: 'Longitude'
   };
@@ -3076,12 +4189,24 @@ export namespace Prisma {
     id: 'id',
     State: 'State',
     TruckDriverName: 'TruckDriverName',
+    TruckDriverName_Hindi: 'TruckDriverName_Hindi',
     TruckNumberPlate: 'TruckNumberPlate',
     Latitude: 'Latitude',
     Longitude: 'Longitude'
   };
 
   export type TruckScalarFieldEnum = (typeof TruckScalarFieldEnum)[keyof typeof TruckScalarFieldEnum]
+
+
+  export const VoiceResponseScalarFieldEnum: {
+    id: 'id',
+    crop: 'crop',
+    market: 'market',
+    quantity: 'quantity',
+    createdAt: 'createdAt'
+  };
+
+  export type VoiceResponseScalarFieldEnum = (typeof VoiceResponseScalarFieldEnum)[keyof typeof VoiceResponseScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3153,6 +4278,20 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
   /**
    * Deep Input Types
    */
@@ -3165,6 +4304,7 @@ export namespace Prisma {
     id?: IntFilter<"MandiLatLong"> | number
     State?: StringFilter<"MandiLatLong"> | string
     Mandi?: StringFilter<"MandiLatLong"> | string
+    Mandi_Hindi?: StringFilter<"MandiLatLong"> | string
     Latitude?: FloatNullableFilter<"MandiLatLong"> | number | null
     Longitude?: FloatNullableFilter<"MandiLatLong"> | number | null
   }
@@ -3173,6 +4313,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     Mandi?: SortOrder
+    Mandi_Hindi?: SortOrder
     Latitude?: SortOrderInput | SortOrder
     Longitude?: SortOrderInput | SortOrder
   }
@@ -3184,6 +4325,7 @@ export namespace Prisma {
     NOT?: MandiLatLongWhereInput | MandiLatLongWhereInput[]
     State?: StringFilter<"MandiLatLong"> | string
     Mandi?: StringFilter<"MandiLatLong"> | string
+    Mandi_Hindi?: StringFilter<"MandiLatLong"> | string
     Latitude?: FloatNullableFilter<"MandiLatLong"> | number | null
     Longitude?: FloatNullableFilter<"MandiLatLong"> | number | null
   }, "id">
@@ -3192,6 +4334,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     Mandi?: SortOrder
+    Mandi_Hindi?: SortOrder
     Latitude?: SortOrderInput | SortOrder
     Longitude?: SortOrderInput | SortOrder
     _count?: MandiLatLongCountOrderByAggregateInput
@@ -3208,6 +4351,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"MandiLatLong"> | number
     State?: StringWithAggregatesFilter<"MandiLatLong"> | string
     Mandi?: StringWithAggregatesFilter<"MandiLatLong"> | string
+    Mandi_Hindi?: StringWithAggregatesFilter<"MandiLatLong"> | string
     Latitude?: FloatNullableWithAggregatesFilter<"MandiLatLong"> | number | null
     Longitude?: FloatNullableWithAggregatesFilter<"MandiLatLong"> | number | null
   }
@@ -3219,6 +4363,7 @@ export namespace Prisma {
     id?: IntFilter<"Truck"> | number
     State?: StringFilter<"Truck"> | string
     TruckDriverName?: StringFilter<"Truck"> | string
+    TruckDriverName_Hindi?: StringFilter<"Truck"> | string
     TruckNumberPlate?: StringFilter<"Truck"> | string
     Latitude?: FloatNullableFilter<"Truck"> | number | null
     Longitude?: FloatNullableFilter<"Truck"> | number | null
@@ -3228,6 +4373,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     TruckDriverName?: SortOrder
+    TruckDriverName_Hindi?: SortOrder
     TruckNumberPlate?: SortOrder
     Latitude?: SortOrderInput | SortOrder
     Longitude?: SortOrderInput | SortOrder
@@ -3241,6 +4387,7 @@ export namespace Prisma {
     NOT?: TruckWhereInput | TruckWhereInput[]
     State?: StringFilter<"Truck"> | string
     TruckDriverName?: StringFilter<"Truck"> | string
+    TruckDriverName_Hindi?: StringFilter<"Truck"> | string
     Latitude?: FloatNullableFilter<"Truck"> | number | null
     Longitude?: FloatNullableFilter<"Truck"> | number | null
   }, "id" | "TruckNumberPlate">
@@ -3249,6 +4396,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     TruckDriverName?: SortOrder
+    TruckDriverName_Hindi?: SortOrder
     TruckNumberPlate?: SortOrder
     Latitude?: SortOrderInput | SortOrder
     Longitude?: SortOrderInput | SortOrder
@@ -3266,14 +4414,68 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Truck"> | number
     State?: StringWithAggregatesFilter<"Truck"> | string
     TruckDriverName?: StringWithAggregatesFilter<"Truck"> | string
+    TruckDriverName_Hindi?: StringWithAggregatesFilter<"Truck"> | string
     TruckNumberPlate?: StringWithAggregatesFilter<"Truck"> | string
     Latitude?: FloatNullableWithAggregatesFilter<"Truck"> | number | null
     Longitude?: FloatNullableWithAggregatesFilter<"Truck"> | number | null
   }
 
+  export type VoiceResponseWhereInput = {
+    AND?: VoiceResponseWhereInput | VoiceResponseWhereInput[]
+    OR?: VoiceResponseWhereInput[]
+    NOT?: VoiceResponseWhereInput | VoiceResponseWhereInput[]
+    id?: StringFilter<"VoiceResponse"> | string
+    crop?: StringFilter<"VoiceResponse"> | string
+    market?: StringFilter<"VoiceResponse"> | string
+    quantity?: StringFilter<"VoiceResponse"> | string
+    createdAt?: DateTimeFilter<"VoiceResponse"> | Date | string
+  }
+
+  export type VoiceResponseOrderByWithRelationInput = {
+    id?: SortOrder
+    crop?: SortOrder
+    market?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VoiceResponseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: VoiceResponseWhereInput | VoiceResponseWhereInput[]
+    OR?: VoiceResponseWhereInput[]
+    NOT?: VoiceResponseWhereInput | VoiceResponseWhereInput[]
+    crop?: StringFilter<"VoiceResponse"> | string
+    market?: StringFilter<"VoiceResponse"> | string
+    quantity?: StringFilter<"VoiceResponse"> | string
+    createdAt?: DateTimeFilter<"VoiceResponse"> | Date | string
+  }, "id">
+
+  export type VoiceResponseOrderByWithAggregationInput = {
+    id?: SortOrder
+    crop?: SortOrder
+    market?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+    _count?: VoiceResponseCountOrderByAggregateInput
+    _max?: VoiceResponseMaxOrderByAggregateInput
+    _min?: VoiceResponseMinOrderByAggregateInput
+  }
+
+  export type VoiceResponseScalarWhereWithAggregatesInput = {
+    AND?: VoiceResponseScalarWhereWithAggregatesInput | VoiceResponseScalarWhereWithAggregatesInput[]
+    OR?: VoiceResponseScalarWhereWithAggregatesInput[]
+    NOT?: VoiceResponseScalarWhereWithAggregatesInput | VoiceResponseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VoiceResponse"> | string
+    crop?: StringWithAggregatesFilter<"VoiceResponse"> | string
+    market?: StringWithAggregatesFilter<"VoiceResponse"> | string
+    quantity?: StringWithAggregatesFilter<"VoiceResponse"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"VoiceResponse"> | Date | string
+  }
+
   export type MandiLatLongCreateInput = {
     State: string
     Mandi: string
+    Mandi_Hindi: string
     Latitude?: number | null
     Longitude?: number | null
   }
@@ -3282,6 +4484,7 @@ export namespace Prisma {
     id?: number
     State: string
     Mandi: string
+    Mandi_Hindi: string
     Latitude?: number | null
     Longitude?: number | null
   }
@@ -3289,6 +4492,7 @@ export namespace Prisma {
   export type MandiLatLongUpdateInput = {
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
+    Mandi_Hindi?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -3297,6 +4501,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
+    Mandi_Hindi?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -3305,6 +4510,7 @@ export namespace Prisma {
     id?: number
     State: string
     Mandi: string
+    Mandi_Hindi: string
     Latitude?: number | null
     Longitude?: number | null
   }
@@ -3312,6 +4518,7 @@ export namespace Prisma {
   export type MandiLatLongUpdateManyMutationInput = {
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
+    Mandi_Hindi?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -3320,6 +4527,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
+    Mandi_Hindi?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
@@ -3327,6 +4535,7 @@ export namespace Prisma {
   export type TruckCreateInput = {
     State: string
     TruckDriverName: string
+    TruckDriverName_Hindi: string
     TruckNumberPlate: string
     Latitude?: number | null
     Longitude?: number | null
@@ -3336,6 +4545,7 @@ export namespace Prisma {
     id?: number
     State: string
     TruckDriverName: string
+    TruckDriverName_Hindi: string
     TruckNumberPlate: string
     Latitude?: number | null
     Longitude?: number | null
@@ -3344,6 +4554,7 @@ export namespace Prisma {
   export type TruckUpdateInput = {
     State?: StringFieldUpdateOperationsInput | string
     TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckDriverName_Hindi?: StringFieldUpdateOperationsInput | string
     TruckNumberPlate?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -3353,6 +4564,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     State?: StringFieldUpdateOperationsInput | string
     TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckDriverName_Hindi?: StringFieldUpdateOperationsInput | string
     TruckNumberPlate?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -3362,6 +4574,7 @@ export namespace Prisma {
     id?: number
     State: string
     TruckDriverName: string
+    TruckDriverName_Hindi: string
     TruckNumberPlate: string
     Latitude?: number | null
     Longitude?: number | null
@@ -3370,6 +4583,7 @@ export namespace Prisma {
   export type TruckUpdateManyMutationInput = {
     State?: StringFieldUpdateOperationsInput | string
     TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckDriverName_Hindi?: StringFieldUpdateOperationsInput | string
     TruckNumberPlate?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -3379,9 +4593,66 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     State?: StringFieldUpdateOperationsInput | string
     TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckDriverName_Hindi?: StringFieldUpdateOperationsInput | string
     TruckNumberPlate?: StringFieldUpdateOperationsInput | string
     Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type VoiceResponseCreateInput = {
+    id?: string
+    crop: string
+    market: string
+    quantity: string
+    createdAt?: Date | string
+  }
+
+  export type VoiceResponseUncheckedCreateInput = {
+    id?: string
+    crop: string
+    market: string
+    quantity: string
+    createdAt?: Date | string
+  }
+
+  export type VoiceResponseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    crop?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    quantity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoiceResponseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    crop?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    quantity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoiceResponseCreateManyInput = {
+    id?: string
+    crop: string
+    market: string
+    quantity: string
+    createdAt?: Date | string
+  }
+
+  export type VoiceResponseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    crop?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    quantity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoiceResponseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    crop?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    quantity?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3430,6 +4701,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     Mandi?: SortOrder
+    Mandi_Hindi?: SortOrder
     Latitude?: SortOrder
     Longitude?: SortOrder
   }
@@ -3444,6 +4716,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     Mandi?: SortOrder
+    Mandi_Hindi?: SortOrder
     Latitude?: SortOrder
     Longitude?: SortOrder
   }
@@ -3452,6 +4725,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     Mandi?: SortOrder
+    Mandi_Hindi?: SortOrder
     Latitude?: SortOrder
     Longitude?: SortOrder
   }
@@ -3516,6 +4790,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     TruckDriverName?: SortOrder
+    TruckDriverName_Hindi?: SortOrder
     TruckNumberPlate?: SortOrder
     Latitude?: SortOrder
     Longitude?: SortOrder
@@ -3531,6 +4806,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     TruckDriverName?: SortOrder
+    TruckDriverName_Hindi?: SortOrder
     TruckNumberPlate?: SortOrder
     Latitude?: SortOrder
     Longitude?: SortOrder
@@ -3540,6 +4816,7 @@ export namespace Prisma {
     id?: SortOrder
     State?: SortOrder
     TruckDriverName?: SortOrder
+    TruckDriverName_Hindi?: SortOrder
     TruckNumberPlate?: SortOrder
     Latitude?: SortOrder
     Longitude?: SortOrder
@@ -3549,6 +4826,55 @@ export namespace Prisma {
     id?: SortOrder
     Latitude?: SortOrder
     Longitude?: SortOrder
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type VoiceResponseCountOrderByAggregateInput = {
+    id?: SortOrder
+    crop?: SortOrder
+    market?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VoiceResponseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    crop?: SortOrder
+    market?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VoiceResponseMinOrderByAggregateInput = {
+    id?: SortOrder
+    crop?: SortOrder
+    market?: SortOrder
+    quantity?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3569,6 +4895,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3676,6 +5006,31 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
 

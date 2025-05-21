@@ -25,3 +25,11 @@ model Truck {
   Latitude         Float?
   Longitude        Float?
 }
+
+model VoiceResponse {
+  id        String   @id @default(cuid())
+  crop      String
+  market    String
+  quantity  String
+  createdAt DateTime @default(now())
+}

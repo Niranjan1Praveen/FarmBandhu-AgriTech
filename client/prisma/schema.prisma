@@ -10,17 +10,28 @@ datasource db {
 }
 
 model MandiLatLong {
-  id        Int    @id @default(autoincrement())
-  State     String
-  Mandi     String
-  Latitude  Float?
-  Longitude Float?
+  id          Int    @id @default(autoincrement())
+  State       String
+  Mandi       String
+  Mandi_Hindi String
+  Latitude    Float?
+  Longitude   Float?
 }
+
 model Truck {
-  id               Int     @id @default(autoincrement())
-  State            String
-  TruckDriverName  String
-  TruckNumberPlate String  @unique
-  Latitude         Float?
-  Longitude        Float?
+  id                    Int    @id @default(autoincrement())
+  State                 String
+  TruckDriverName       String
+  TruckDriverName_Hindi String
+  TruckNumberPlate      String @unique
+  Latitude              Float?
+  Longitude             Float?
+}
+
+model VoiceResponse {
+  id        String   @id @default(cuid())
+  crop      String
+  market    String
+  quantity  String
+  createdAt DateTime @default(now())
 }

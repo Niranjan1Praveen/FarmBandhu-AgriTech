@@ -124,6 +124,7 @@ exports.Prisma.MandiLatLongScalarFieldEnum = {
   id: 'id',
   State: 'State',
   Mandi: 'Mandi',
+  Mandi_Hindi: 'Mandi_Hindi',
   Latitude: 'Latitude',
   Longitude: 'Longitude'
 };
@@ -132,9 +133,18 @@ exports.Prisma.TruckScalarFieldEnum = {
   id: 'id',
   State: 'State',
   TruckDriverName: 'TruckDriverName',
+  TruckDriverName_Hindi: 'TruckDriverName_Hindi',
   TruckNumberPlate: 'TruckNumberPlate',
   Latitude: 'Latitude',
   Longitude: 'Longitude'
+};
+
+exports.Prisma.VoiceResponseScalarFieldEnum = {
+  id: 'id',
+  crop: 'crop',
+  market: 'market',
+  quantity: 'quantity',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -155,7 +165,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   MandiLatLong: 'MandiLatLong',
-  Truck: 'Truck'
+  Truck: 'Truck',
+  VoiceResponse: 'VoiceResponse'
 };
 
 /**
