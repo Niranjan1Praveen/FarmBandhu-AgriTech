@@ -164,6 +164,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "darwin-arm64"
       }
     ],
     "previewFeatures": [],
@@ -181,6 +185,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -189,8 +194,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel MandiLatLong {\n  id          Int    @id @default(autoincrement())\n  State       String\n  Mandi       String\n  Mandi_Hindi String\n  Latitude    Float?\n  Longitude   Float?\n}\n\nmodel Truck {\n  id                    Int    @id @default(autoincrement())\n  State                 String\n  TruckDriverName       String\n  TruckDriverName_Hindi String\n  TruckNumberPlate      String @unique\n  Latitude              Float?\n  Longitude             Float?\n}\n\nmodel VoiceResponse {\n  id        String   @id @default(cuid())\n  crop      String\n  market    String\n  quantity  String\n  Latitude  Float?\n  Longitude Float?\n  createdAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "f1fe23cf339f2c01de1f88778d15ba330517cf742d74647362bcd4f880b2d00d",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"darwin-arm64\"]\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel MandiLatLong {\n  id          Int    @id @default(autoincrement())\n  State       String\n  Mandi       String\n  Mandi_Hindi String\n  Latitude    Float?\n  Longitude   Float?\n}\n\nmodel Truck {\n  id                    Int    @id @default(autoincrement())\n  State                 String\n  TruckDriverName       String\n  TruckDriverName_Hindi String\n  TruckNumberPlate      String @unique\n  Latitude              Float?\n  Longitude             Float?\n}\n\nmodel VoiceResponse {\n  id        String   @id @default(cuid())\n  crop      String\n  market    String\n  quantity  String\n  Latitude  Float?\n  Longitude Float?\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "d40bff35b21b18b4a57289ac6c4730efdde241b5a2f8fedeb5ff4adf37c0e1fe",
   "copyEngine": true
 }
 config.dirname = '/'
