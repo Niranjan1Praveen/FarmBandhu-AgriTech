@@ -4,7 +4,8 @@ import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const text = `Despite growing CSR funding and a motivated youth population, real-world volunteer impact remains fragmented, impulsively untracked, and severely undervalued.`;
+const text = `असंगठित लॉजिस्टिक्स, ऊँची परिवहन लागत और समय पर ट्रक की अनुपलब्धता के कारण, किसानों को देरी, फसल खराब होने और तकनीकी पहुँच की कमी जैसी गंभीर समस्याओं का सामना करना पड़ता है।`;
+
 const words = text.split(" ");
 export default function Introduction() {
   const scrollTarget = useRef();
@@ -24,22 +25,22 @@ export default function Introduction() {
       <div className="container">
         <div className="sticky top-20 md:top-28 lg:top-40">
           <div className="flex justify-center">
-            <Tags title={"Introduction"} />
+            <Tags title={"परिचय"} />
           </div>
           <div className="text-4xl md:text-5xl text-center font-medium mt-10">
-            <span>Social impact should be measurable and meaningful.</span>{" "}
-            <span className="text-white/15 leading-tight">
+            <span>
+              सामाजिक प्रभाव को मापने योग्य और सार्थक होना चाहिए। CSR फंडिंग के
+              बढ़ने के बावजूद...
+            </span>{" "}
+            <span className="text-white/15 leading-relaxed tracking-wider">
               {words.map((word, index) => {
                 const isVisible = index < currentWord;
-                const shouldUnderline =
+                
+                const shouldHighlight =
                   isVisible &&
-                  (word.toLowerCase().includes("funding") ||
-                    word.toLowerCase().includes("youth"));
-                const shouldHightlight =
-                  (isVisible &&
-                    (word.toLowerCase().includes("fragmented") ||
-                      word.toLowerCase().includes("untracked"))) ||
-                  word.toLowerCase().includes("undervalued");
+                  ["असंगठित", "देरी", "खराब"].some((w) =>
+                    word.toLowerCase().includes(w)
+                  );
 
                 return (
                   <span
@@ -47,12 +48,7 @@ export default function Introduction() {
                     className={twMerge(
                       "transition duration-500",
                       isVisible ? "text-white" : "text-white/15",
-                      isVisible &&
-                        shouldHightlight &&
-                        "text-red-500 italic transition",
-                      isVisible &&
-                        shouldUnderline &&
-                        "underline decoration-lime-400 underline-offset-8 transition"
+                      isVisible && shouldHighlight && "text-red-500 italic",
                     )}
                   >
                     {word + " "}
@@ -61,7 +57,7 @@ export default function Introduction() {
               })}
             </span>
             <span className="text-lime-400 block mt-3">
-              That’s why we built DropConnect.
+              इसीलिए हमने फ़ार्मबंधु बनाया है।
             </span>
           </div>
         </div>

@@ -94,11 +94,6 @@ export default function Navbar() {
                   className="overflow-hidden"
                 >
                   <div className="flex flex-col items-center gap-4 py-4 ">
-                    {navLinks.map((link) => (
-                      <a href={link.href} key={link.label} className="">
-                        {link.label}
-                      </a>
-                    ))}
                     <LoginLink>
                       <Button
                         variant={"login"}

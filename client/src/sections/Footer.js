@@ -3,10 +3,11 @@ import Link from "next/link";
 import logo from "@/assets/images/logo.png";
 
 const footerLinks = [
-  { href: "#", label: "Contact" },
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "Terms & Conditions" },
+  { href: "#", label: "संपर्क करें" },
+  { href: "#", label: "गोपनीयता नीति" },
+  { href: "#", label: "नियम और शर्तें" },
 ];
+
 
 export default function Footer() {
   return (
@@ -16,18 +17,24 @@ export default function Footer() {
           <div className="flex items-center">
             <Image src={logo} alt="Logo Icon" className="h-auto w-20" />
             <h2 className="font-bold text-2xl md:inline-flex hidden text-lime-400">
-              DropConnect
+              फ़ार्मबंधु
             </h2>
           </div>
           <small className="text-white/50">
-            Built by{" "}
+            द्वारा निर्मित{" "}
             <Link href={"/"} className="uppercase">
               code4change
             </Link>
-            . The source code is available on{" "}
-            <Link href={"https://github.com/Niranjan1Praveen/DropConnect-Development"} className="underline italic">
-              GitHub.
-            </Link>
+            । स्रोत कोड{" "}
+            <Link
+              href={
+                "https://github.com/Niranjan1Praveen/DropConnect-Development"
+              }
+              className="underline italic"
+            >
+              GitHub
+            </Link>{" "}
+            पर उपलब्ध है।
           </small>
         </div>
         <nav className="flex gap-6">
