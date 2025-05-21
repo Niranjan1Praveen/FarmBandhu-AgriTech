@@ -128,6 +128,15 @@ exports.Prisma.MandiLatLongScalarFieldEnum = {
   Longitude: 'Longitude'
 };
 
+exports.Prisma.TruckScalarFieldEnum = {
+  id: 'id',
+  State: 'State',
+  TruckDriverName: 'TruckDriverName',
+  TruckNumberPlate: 'TruckNumberPlate',
+  Latitude: 'Latitude',
+  Longitude: 'Longitude'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -138,9 +147,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  MandiLatLong: 'MandiLatLong'
+  MandiLatLong: 'MandiLatLong',
+  Truck: 'Truck'
 };
 
 /**

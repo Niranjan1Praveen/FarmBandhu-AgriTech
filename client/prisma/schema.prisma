@@ -13,6 +13,14 @@ model MandiLatLong {
   id        Int    @id @default(autoincrement())
   State     String
   Mandi     String
-  Latitude  Float
-  Longitude Float
+  Latitude  Float?
+  Longitude Float?
+}
+model Truck {
+  id               Int     @id @default(autoincrement())
+  State            String
+  TruckDriverName  String
+  TruckNumberPlate String  @unique
+  Latitude         Float?
+  Longitude        Float?
 }

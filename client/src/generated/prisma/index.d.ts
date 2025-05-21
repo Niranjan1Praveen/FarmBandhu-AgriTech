@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type MandiLatLong = $Result.DefaultSelection<Prisma.$MandiLatLongPayload>
+/**
+ * Model Truck
+ * 
+ */
+export type Truck = $Result.DefaultSelection<Prisma.$TruckPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +158,16 @@ export class PrismaClient<
     * ```
     */
   get mandiLatLong(): Prisma.MandiLatLongDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.truck`: Exposes CRUD operations for the **Truck** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Trucks
+    * const trucks = await prisma.truck.findMany()
+    * ```
+    */
+  get truck(): Prisma.TruckDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    MandiLatLong: 'MandiLatLong'
+    MandiLatLong: 'MandiLatLong',
+    Truck: 'Truck'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +628,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "mandiLatLong"
+      modelProps: "mandiLatLong" | "truck"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +703,80 @@ export namespace Prisma {
           count: {
             args: Prisma.MandiLatLongCountArgs<ExtArgs>
             result: $Utils.Optional<MandiLatLongCountAggregateOutputType> | number
+          }
+        }
+      }
+      Truck: {
+        payload: Prisma.$TruckPayload<ExtArgs>
+        fields: Prisma.TruckFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TruckFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TruckFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>
+          }
+          findFirst: {
+            args: Prisma.TruckFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TruckFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>
+          }
+          findMany: {
+            args: Prisma.TruckFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>[]
+          }
+          create: {
+            args: Prisma.TruckCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>
+          }
+          createMany: {
+            args: Prisma.TruckCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TruckCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>[]
+          }
+          delete: {
+            args: Prisma.TruckDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>
+          }
+          update: {
+            args: Prisma.TruckUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>
+          }
+          deleteMany: {
+            args: Prisma.TruckDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TruckUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TruckUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>[]
+          }
+          upsert: {
+            args: Prisma.TruckUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TruckPayload>
+          }
+          aggregate: {
+            args: Prisma.TruckAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTruck>
+          }
+          groupBy: {
+            args: Prisma.TruckGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TruckGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TruckCountArgs<ExtArgs>
+            result: $Utils.Optional<TruckCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +865,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     mandiLatLong?: MandiLatLongOmit
+    truck?: TruckOmit
   }
 
   /* Types for Logging */
@@ -1046,8 +1137,8 @@ export namespace Prisma {
     id: number
     State: string
     Mandi: string
-    Latitude: number
-    Longitude: number
+    Latitude: number | null
+    Longitude: number | null
     _count: MandiLatLongCountAggregateOutputType | null
     _avg: MandiLatLongAvgAggregateOutputType | null
     _sum: MandiLatLongSumAggregateOutputType | null
@@ -1110,8 +1201,8 @@ export namespace Prisma {
       id: number
       State: string
       Mandi: string
-      Latitude: number
-      Longitude: number
+      Latitude: number | null
+      Longitude: number | null
     }, ExtArgs["result"]["mandiLatLong"]>
     composites: {}
   }
@@ -1907,6 +1998,1056 @@ export namespace Prisma {
 
 
   /**
+   * Model Truck
+   */
+
+  export type AggregateTruck = {
+    _count: TruckCountAggregateOutputType | null
+    _avg: TruckAvgAggregateOutputType | null
+    _sum: TruckSumAggregateOutputType | null
+    _min: TruckMinAggregateOutputType | null
+    _max: TruckMaxAggregateOutputType | null
+  }
+
+  export type TruckAvgAggregateOutputType = {
+    id: number | null
+    Latitude: number | null
+    Longitude: number | null
+  }
+
+  export type TruckSumAggregateOutputType = {
+    id: number | null
+    Latitude: number | null
+    Longitude: number | null
+  }
+
+  export type TruckMinAggregateOutputType = {
+    id: number | null
+    State: string | null
+    TruckDriverName: string | null
+    TruckNumberPlate: string | null
+    Latitude: number | null
+    Longitude: number | null
+  }
+
+  export type TruckMaxAggregateOutputType = {
+    id: number | null
+    State: string | null
+    TruckDriverName: string | null
+    TruckNumberPlate: string | null
+    Latitude: number | null
+    Longitude: number | null
+  }
+
+  export type TruckCountAggregateOutputType = {
+    id: number
+    State: number
+    TruckDriverName: number
+    TruckNumberPlate: number
+    Latitude: number
+    Longitude: number
+    _all: number
+  }
+
+
+  export type TruckAvgAggregateInputType = {
+    id?: true
+    Latitude?: true
+    Longitude?: true
+  }
+
+  export type TruckSumAggregateInputType = {
+    id?: true
+    Latitude?: true
+    Longitude?: true
+  }
+
+  export type TruckMinAggregateInputType = {
+    id?: true
+    State?: true
+    TruckDriverName?: true
+    TruckNumberPlate?: true
+    Latitude?: true
+    Longitude?: true
+  }
+
+  export type TruckMaxAggregateInputType = {
+    id?: true
+    State?: true
+    TruckDriverName?: true
+    TruckNumberPlate?: true
+    Latitude?: true
+    Longitude?: true
+  }
+
+  export type TruckCountAggregateInputType = {
+    id?: true
+    State?: true
+    TruckDriverName?: true
+    TruckNumberPlate?: true
+    Latitude?: true
+    Longitude?: true
+    _all?: true
+  }
+
+  export type TruckAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Truck to aggregate.
+     */
+    where?: TruckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Trucks to fetch.
+     */
+    orderBy?: TruckOrderByWithRelationInput | TruckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TruckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Trucks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Trucks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Trucks
+    **/
+    _count?: true | TruckCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TruckAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TruckSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TruckMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TruckMaxAggregateInputType
+  }
+
+  export type GetTruckAggregateType<T extends TruckAggregateArgs> = {
+        [P in keyof T & keyof AggregateTruck]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTruck[P]>
+      : GetScalarType<T[P], AggregateTruck[P]>
+  }
+
+
+
+
+  export type TruckGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TruckWhereInput
+    orderBy?: TruckOrderByWithAggregationInput | TruckOrderByWithAggregationInput[]
+    by: TruckScalarFieldEnum[] | TruckScalarFieldEnum
+    having?: TruckScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TruckCountAggregateInputType | true
+    _avg?: TruckAvgAggregateInputType
+    _sum?: TruckSumAggregateInputType
+    _min?: TruckMinAggregateInputType
+    _max?: TruckMaxAggregateInputType
+  }
+
+  export type TruckGroupByOutputType = {
+    id: number
+    State: string
+    TruckDriverName: string
+    TruckNumberPlate: string
+    Latitude: number | null
+    Longitude: number | null
+    _count: TruckCountAggregateOutputType | null
+    _avg: TruckAvgAggregateOutputType | null
+    _sum: TruckSumAggregateOutputType | null
+    _min: TruckMinAggregateOutputType | null
+    _max: TruckMaxAggregateOutputType | null
+  }
+
+  type GetTruckGroupByPayload<T extends TruckGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TruckGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TruckGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TruckGroupByOutputType[P]>
+            : GetScalarType<T[P], TruckGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TruckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    State?: boolean
+    TruckDriverName?: boolean
+    TruckNumberPlate?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
+  }, ExtArgs["result"]["truck"]>
+
+  export type TruckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    State?: boolean
+    TruckDriverName?: boolean
+    TruckNumberPlate?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
+  }, ExtArgs["result"]["truck"]>
+
+  export type TruckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    State?: boolean
+    TruckDriverName?: boolean
+    TruckNumberPlate?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
+  }, ExtArgs["result"]["truck"]>
+
+  export type TruckSelectScalar = {
+    id?: boolean
+    State?: boolean
+    TruckDriverName?: boolean
+    TruckNumberPlate?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
+  }
+
+  export type TruckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "State" | "TruckDriverName" | "TruckNumberPlate" | "Latitude" | "Longitude", ExtArgs["result"]["truck"]>
+
+  export type $TruckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Truck"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      State: string
+      TruckDriverName: string
+      TruckNumberPlate: string
+      Latitude: number | null
+      Longitude: number | null
+    }, ExtArgs["result"]["truck"]>
+    composites: {}
+  }
+
+  type TruckGetPayload<S extends boolean | null | undefined | TruckDefaultArgs> = $Result.GetResult<Prisma.$TruckPayload, S>
+
+  type TruckCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TruckFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TruckCountAggregateInputType | true
+    }
+
+  export interface TruckDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Truck'], meta: { name: 'Truck' } }
+    /**
+     * Find zero or one Truck that matches the filter.
+     * @param {TruckFindUniqueArgs} args - Arguments to find a Truck
+     * @example
+     * // Get one Truck
+     * const truck = await prisma.truck.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TruckFindUniqueArgs>(args: SelectSubset<T, TruckFindUniqueArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Truck that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TruckFindUniqueOrThrowArgs} args - Arguments to find a Truck
+     * @example
+     * // Get one Truck
+     * const truck = await prisma.truck.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TruckFindUniqueOrThrowArgs>(args: SelectSubset<T, TruckFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Truck that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TruckFindFirstArgs} args - Arguments to find a Truck
+     * @example
+     * // Get one Truck
+     * const truck = await prisma.truck.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TruckFindFirstArgs>(args?: SelectSubset<T, TruckFindFirstArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Truck that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TruckFindFirstOrThrowArgs} args - Arguments to find a Truck
+     * @example
+     * // Get one Truck
+     * const truck = await prisma.truck.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TruckFindFirstOrThrowArgs>(args?: SelectSubset<T, TruckFindFirstOrThrowArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Trucks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TruckFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Trucks
+     * const trucks = await prisma.truck.findMany()
+     * 
+     * // Get first 10 Trucks
+     * const trucks = await prisma.truck.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const truckWithIdOnly = await prisma.truck.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TruckFindManyArgs>(args?: SelectSubset<T, TruckFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Truck.
+     * @param {TruckCreateArgs} args - Arguments to create a Truck.
+     * @example
+     * // Create one Truck
+     * const Truck = await prisma.truck.create({
+     *   data: {
+     *     // ... data to create a Truck
+     *   }
+     * })
+     * 
+     */
+    create<T extends TruckCreateArgs>(args: SelectSubset<T, TruckCreateArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Trucks.
+     * @param {TruckCreateManyArgs} args - Arguments to create many Trucks.
+     * @example
+     * // Create many Trucks
+     * const truck = await prisma.truck.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TruckCreateManyArgs>(args?: SelectSubset<T, TruckCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Trucks and returns the data saved in the database.
+     * @param {TruckCreateManyAndReturnArgs} args - Arguments to create many Trucks.
+     * @example
+     * // Create many Trucks
+     * const truck = await prisma.truck.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Trucks and only return the `id`
+     * const truckWithIdOnly = await prisma.truck.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TruckCreateManyAndReturnArgs>(args?: SelectSubset<T, TruckCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Truck.
+     * @param {TruckDeleteArgs} args - Arguments to delete one Truck.
+     * @example
+     * // Delete one Truck
+     * const Truck = await prisma.truck.delete({
+     *   where: {
+     *     // ... filter to delete one Truck
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TruckDeleteArgs>(args: SelectSubset<T, TruckDeleteArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Truck.
+     * @param {TruckUpdateArgs} args - Arguments to update one Truck.
+     * @example
+     * // Update one Truck
+     * const truck = await prisma.truck.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TruckUpdateArgs>(args: SelectSubset<T, TruckUpdateArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Trucks.
+     * @param {TruckDeleteManyArgs} args - Arguments to filter Trucks to delete.
+     * @example
+     * // Delete a few Trucks
+     * const { count } = await prisma.truck.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TruckDeleteManyArgs>(args?: SelectSubset<T, TruckDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Trucks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TruckUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Trucks
+     * const truck = await prisma.truck.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TruckUpdateManyArgs>(args: SelectSubset<T, TruckUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Trucks and returns the data updated in the database.
+     * @param {TruckUpdateManyAndReturnArgs} args - Arguments to update many Trucks.
+     * @example
+     * // Update many Trucks
+     * const truck = await prisma.truck.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Trucks and only return the `id`
+     * const truckWithIdOnly = await prisma.truck.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TruckUpdateManyAndReturnArgs>(args: SelectSubset<T, TruckUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Truck.
+     * @param {TruckUpsertArgs} args - Arguments to update or create a Truck.
+     * @example
+     * // Update or create a Truck
+     * const truck = await prisma.truck.upsert({
+     *   create: {
+     *     // ... data to create a Truck
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Truck we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TruckUpsertArgs>(args: SelectSubset<T, TruckUpsertArgs<ExtArgs>>): Prisma__TruckClient<$Result.GetResult<Prisma.$TruckPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Trucks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TruckCountArgs} args - Arguments to filter Trucks to count.
+     * @example
+     * // Count the number of Trucks
+     * const count = await prisma.truck.count({
+     *   where: {
+     *     // ... the filter for the Trucks we want to count
+     *   }
+     * })
+    **/
+    count<T extends TruckCountArgs>(
+      args?: Subset<T, TruckCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TruckCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Truck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TruckAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TruckAggregateArgs>(args: Subset<T, TruckAggregateArgs>): Prisma.PrismaPromise<GetTruckAggregateType<T>>
+
+    /**
+     * Group by Truck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TruckGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TruckGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TruckGroupByArgs['orderBy'] }
+        : { orderBy?: TruckGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TruckGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTruckGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Truck model
+   */
+  readonly fields: TruckFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Truck.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TruckClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Truck model
+   */
+  interface TruckFieldRefs {
+    readonly id: FieldRef<"Truck", 'Int'>
+    readonly State: FieldRef<"Truck", 'String'>
+    readonly TruckDriverName: FieldRef<"Truck", 'String'>
+    readonly TruckNumberPlate: FieldRef<"Truck", 'String'>
+    readonly Latitude: FieldRef<"Truck", 'Float'>
+    readonly Longitude: FieldRef<"Truck", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Truck findUnique
+   */
+  export type TruckFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * Filter, which Truck to fetch.
+     */
+    where: TruckWhereUniqueInput
+  }
+
+  /**
+   * Truck findUniqueOrThrow
+   */
+  export type TruckFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * Filter, which Truck to fetch.
+     */
+    where: TruckWhereUniqueInput
+  }
+
+  /**
+   * Truck findFirst
+   */
+  export type TruckFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * Filter, which Truck to fetch.
+     */
+    where?: TruckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Trucks to fetch.
+     */
+    orderBy?: TruckOrderByWithRelationInput | TruckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Trucks.
+     */
+    cursor?: TruckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Trucks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Trucks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Trucks.
+     */
+    distinct?: TruckScalarFieldEnum | TruckScalarFieldEnum[]
+  }
+
+  /**
+   * Truck findFirstOrThrow
+   */
+  export type TruckFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * Filter, which Truck to fetch.
+     */
+    where?: TruckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Trucks to fetch.
+     */
+    orderBy?: TruckOrderByWithRelationInput | TruckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Trucks.
+     */
+    cursor?: TruckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Trucks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Trucks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Trucks.
+     */
+    distinct?: TruckScalarFieldEnum | TruckScalarFieldEnum[]
+  }
+
+  /**
+   * Truck findMany
+   */
+  export type TruckFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * Filter, which Trucks to fetch.
+     */
+    where?: TruckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Trucks to fetch.
+     */
+    orderBy?: TruckOrderByWithRelationInput | TruckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Trucks.
+     */
+    cursor?: TruckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Trucks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Trucks.
+     */
+    skip?: number
+    distinct?: TruckScalarFieldEnum | TruckScalarFieldEnum[]
+  }
+
+  /**
+   * Truck create
+   */
+  export type TruckCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Truck.
+     */
+    data: XOR<TruckCreateInput, TruckUncheckedCreateInput>
+  }
+
+  /**
+   * Truck createMany
+   */
+  export type TruckCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Trucks.
+     */
+    data: TruckCreateManyInput | TruckCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Truck createManyAndReturn
+   */
+  export type TruckCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * The data used to create many Trucks.
+     */
+    data: TruckCreateManyInput | TruckCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Truck update
+   */
+  export type TruckUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Truck.
+     */
+    data: XOR<TruckUpdateInput, TruckUncheckedUpdateInput>
+    /**
+     * Choose, which Truck to update.
+     */
+    where: TruckWhereUniqueInput
+  }
+
+  /**
+   * Truck updateMany
+   */
+  export type TruckUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Trucks.
+     */
+    data: XOR<TruckUpdateManyMutationInput, TruckUncheckedUpdateManyInput>
+    /**
+     * Filter which Trucks to update
+     */
+    where?: TruckWhereInput
+    /**
+     * Limit how many Trucks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Truck updateManyAndReturn
+   */
+  export type TruckUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * The data used to update Trucks.
+     */
+    data: XOR<TruckUpdateManyMutationInput, TruckUncheckedUpdateManyInput>
+    /**
+     * Filter which Trucks to update
+     */
+    where?: TruckWhereInput
+    /**
+     * Limit how many Trucks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Truck upsert
+   */
+  export type TruckUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Truck to update in case it exists.
+     */
+    where: TruckWhereUniqueInput
+    /**
+     * In case the Truck found by the `where` argument doesn't exist, create a new Truck with this data.
+     */
+    create: XOR<TruckCreateInput, TruckUncheckedCreateInput>
+    /**
+     * In case the Truck was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TruckUpdateInput, TruckUncheckedUpdateInput>
+  }
+
+  /**
+   * Truck delete
+   */
+  export type TruckDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+    /**
+     * Filter which Truck to delete.
+     */
+    where: TruckWhereUniqueInput
+  }
+
+  /**
+   * Truck deleteMany
+   */
+  export type TruckDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Trucks to delete
+     */
+    where?: TruckWhereInput
+    /**
+     * Limit how many Trucks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Truck without action
+   */
+  export type TruckDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Truck
+     */
+    select?: TruckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Truck
+     */
+    omit?: TruckOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1931,6 +3072,18 @@ export namespace Prisma {
   export type MandiLatLongScalarFieldEnum = (typeof MandiLatLongScalarFieldEnum)[keyof typeof MandiLatLongScalarFieldEnum]
 
 
+  export const TruckScalarFieldEnum: {
+    id: 'id',
+    State: 'State',
+    TruckDriverName: 'TruckDriverName',
+    TruckNumberPlate: 'TruckNumberPlate',
+    Latitude: 'Latitude',
+    Longitude: 'Longitude'
+  };
+
+  export type TruckScalarFieldEnum = (typeof TruckScalarFieldEnum)[keyof typeof TruckScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -1945,6 +3098,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -2004,16 +3165,16 @@ export namespace Prisma {
     id?: IntFilter<"MandiLatLong"> | number
     State?: StringFilter<"MandiLatLong"> | string
     Mandi?: StringFilter<"MandiLatLong"> | string
-    Latitude?: FloatFilter<"MandiLatLong"> | number
-    Longitude?: FloatFilter<"MandiLatLong"> | number
+    Latitude?: FloatNullableFilter<"MandiLatLong"> | number | null
+    Longitude?: FloatNullableFilter<"MandiLatLong"> | number | null
   }
 
   export type MandiLatLongOrderByWithRelationInput = {
     id?: SortOrder
     State?: SortOrder
     Mandi?: SortOrder
-    Latitude?: SortOrder
-    Longitude?: SortOrder
+    Latitude?: SortOrderInput | SortOrder
+    Longitude?: SortOrderInput | SortOrder
   }
 
   export type MandiLatLongWhereUniqueInput = Prisma.AtLeast<{
@@ -2023,16 +3184,16 @@ export namespace Prisma {
     NOT?: MandiLatLongWhereInput | MandiLatLongWhereInput[]
     State?: StringFilter<"MandiLatLong"> | string
     Mandi?: StringFilter<"MandiLatLong"> | string
-    Latitude?: FloatFilter<"MandiLatLong"> | number
-    Longitude?: FloatFilter<"MandiLatLong"> | number
+    Latitude?: FloatNullableFilter<"MandiLatLong"> | number | null
+    Longitude?: FloatNullableFilter<"MandiLatLong"> | number | null
   }, "id">
 
   export type MandiLatLongOrderByWithAggregationInput = {
     id?: SortOrder
     State?: SortOrder
     Mandi?: SortOrder
-    Latitude?: SortOrder
-    Longitude?: SortOrder
+    Latitude?: SortOrderInput | SortOrder
+    Longitude?: SortOrderInput | SortOrder
     _count?: MandiLatLongCountOrderByAggregateInput
     _avg?: MandiLatLongAvgOrderByAggregateInput
     _max?: MandiLatLongMaxOrderByAggregateInput
@@ -2047,61 +3208,180 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"MandiLatLong"> | number
     State?: StringWithAggregatesFilter<"MandiLatLong"> | string
     Mandi?: StringWithAggregatesFilter<"MandiLatLong"> | string
-    Latitude?: FloatWithAggregatesFilter<"MandiLatLong"> | number
-    Longitude?: FloatWithAggregatesFilter<"MandiLatLong"> | number
+    Latitude?: FloatNullableWithAggregatesFilter<"MandiLatLong"> | number | null
+    Longitude?: FloatNullableWithAggregatesFilter<"MandiLatLong"> | number | null
+  }
+
+  export type TruckWhereInput = {
+    AND?: TruckWhereInput | TruckWhereInput[]
+    OR?: TruckWhereInput[]
+    NOT?: TruckWhereInput | TruckWhereInput[]
+    id?: IntFilter<"Truck"> | number
+    State?: StringFilter<"Truck"> | string
+    TruckDriverName?: StringFilter<"Truck"> | string
+    TruckNumberPlate?: StringFilter<"Truck"> | string
+    Latitude?: FloatNullableFilter<"Truck"> | number | null
+    Longitude?: FloatNullableFilter<"Truck"> | number | null
+  }
+
+  export type TruckOrderByWithRelationInput = {
+    id?: SortOrder
+    State?: SortOrder
+    TruckDriverName?: SortOrder
+    TruckNumberPlate?: SortOrder
+    Latitude?: SortOrderInput | SortOrder
+    Longitude?: SortOrderInput | SortOrder
+  }
+
+  export type TruckWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    TruckNumberPlate?: string
+    AND?: TruckWhereInput | TruckWhereInput[]
+    OR?: TruckWhereInput[]
+    NOT?: TruckWhereInput | TruckWhereInput[]
+    State?: StringFilter<"Truck"> | string
+    TruckDriverName?: StringFilter<"Truck"> | string
+    Latitude?: FloatNullableFilter<"Truck"> | number | null
+    Longitude?: FloatNullableFilter<"Truck"> | number | null
+  }, "id" | "TruckNumberPlate">
+
+  export type TruckOrderByWithAggregationInput = {
+    id?: SortOrder
+    State?: SortOrder
+    TruckDriverName?: SortOrder
+    TruckNumberPlate?: SortOrder
+    Latitude?: SortOrderInput | SortOrder
+    Longitude?: SortOrderInput | SortOrder
+    _count?: TruckCountOrderByAggregateInput
+    _avg?: TruckAvgOrderByAggregateInput
+    _max?: TruckMaxOrderByAggregateInput
+    _min?: TruckMinOrderByAggregateInput
+    _sum?: TruckSumOrderByAggregateInput
+  }
+
+  export type TruckScalarWhereWithAggregatesInput = {
+    AND?: TruckScalarWhereWithAggregatesInput | TruckScalarWhereWithAggregatesInput[]
+    OR?: TruckScalarWhereWithAggregatesInput[]
+    NOT?: TruckScalarWhereWithAggregatesInput | TruckScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Truck"> | number
+    State?: StringWithAggregatesFilter<"Truck"> | string
+    TruckDriverName?: StringWithAggregatesFilter<"Truck"> | string
+    TruckNumberPlate?: StringWithAggregatesFilter<"Truck"> | string
+    Latitude?: FloatNullableWithAggregatesFilter<"Truck"> | number | null
+    Longitude?: FloatNullableWithAggregatesFilter<"Truck"> | number | null
   }
 
   export type MandiLatLongCreateInput = {
     State: string
     Mandi: string
-    Latitude: number
-    Longitude: number
+    Latitude?: number | null
+    Longitude?: number | null
   }
 
   export type MandiLatLongUncheckedCreateInput = {
     id?: number
     State: string
     Mandi: string
-    Latitude: number
-    Longitude: number
+    Latitude?: number | null
+    Longitude?: number | null
   }
 
   export type MandiLatLongUpdateInput = {
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
-    Latitude?: FloatFieldUpdateOperationsInput | number
-    Longitude?: FloatFieldUpdateOperationsInput | number
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type MandiLatLongUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
-    Latitude?: FloatFieldUpdateOperationsInput | number
-    Longitude?: FloatFieldUpdateOperationsInput | number
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type MandiLatLongCreateManyInput = {
     id?: number
     State: string
     Mandi: string
-    Latitude: number
-    Longitude: number
+    Latitude?: number | null
+    Longitude?: number | null
   }
 
   export type MandiLatLongUpdateManyMutationInput = {
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
-    Latitude?: FloatFieldUpdateOperationsInput | number
-    Longitude?: FloatFieldUpdateOperationsInput | number
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type MandiLatLongUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     State?: StringFieldUpdateOperationsInput | string
     Mandi?: StringFieldUpdateOperationsInput | string
-    Latitude?: FloatFieldUpdateOperationsInput | number
-    Longitude?: FloatFieldUpdateOperationsInput | number
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type TruckCreateInput = {
+    State: string
+    TruckDriverName: string
+    TruckNumberPlate: string
+    Latitude?: number | null
+    Longitude?: number | null
+  }
+
+  export type TruckUncheckedCreateInput = {
+    id?: number
+    State: string
+    TruckDriverName: string
+    TruckNumberPlate: string
+    Latitude?: number | null
+    Longitude?: number | null
+  }
+
+  export type TruckUpdateInput = {
+    State?: StringFieldUpdateOperationsInput | string
+    TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckNumberPlate?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type TruckUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    State?: StringFieldUpdateOperationsInput | string
+    TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckNumberPlate?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type TruckCreateManyInput = {
+    id?: number
+    State: string
+    TruckDriverName: string
+    TruckNumberPlate: string
+    Latitude?: number | null
+    Longitude?: number | null
+  }
+
+  export type TruckUpdateManyMutationInput = {
+    State?: StringFieldUpdateOperationsInput | string
+    TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckNumberPlate?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type TruckUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    State?: StringFieldUpdateOperationsInput | string
+    TruckDriverName?: StringFieldUpdateOperationsInput | string
+    TruckNumberPlate?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2130,15 +3410,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type MandiLatLongCountOrderByAggregateInput = {
@@ -2211,28 +3496,67 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type TruckCountOrderByAggregateInput = {
+    id?: SortOrder
+    State?: SortOrder
+    TruckDriverName?: SortOrder
+    TruckNumberPlate?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
+  }
+
+  export type TruckAvgOrderByAggregateInput = {
+    id?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
+  }
+
+  export type TruckMaxOrderByAggregateInput = {
+    id?: SortOrder
+    State?: SortOrder
+    TruckDriverName?: SortOrder
+    TruckNumberPlate?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
+  }
+
+  export type TruckMinOrderByAggregateInput = {
+    id?: SortOrder
+    State?: SortOrder
+    TruckDriverName?: SortOrder
+    TruckNumberPlate?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
+  }
+
+  export type TruckSumOrderByAggregateInput = {
+    id?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -2272,15 +3596,15 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2297,6 +3621,17 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2316,20 +3651,31 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
 
