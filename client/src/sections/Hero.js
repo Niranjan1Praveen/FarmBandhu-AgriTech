@@ -25,7 +25,7 @@ export default function Hero() {
           src={heroDesign}
           width={600}
           height={600}
-          className="w-[300px] h-[300px]"
+          className="w-[300px] h-[300px] mx-auto mt-8"
           alt={"Here Design-1"}
         />
 

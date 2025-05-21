@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Mic, Leaf, Home, Package, X, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { toast, Toaster } from "sonner";
 const promptsData = [
   {
     id: "crop",
@@ -204,7 +205,7 @@ export default function VoiceForm() {
         });
 
         if (res.ok) {
-          alert(
+          toast(
             `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
           );
           await speak("आपका ट्रक आने वाला है, कृपया कुछ समय प्रतीक्षा करें।");
@@ -223,6 +224,7 @@ export default function VoiceForm() {
   return (
     <div className="max-w-2xl mx-auto mt-20 p-4">
       <div className="flex flex-col items-center mb-6 relative">
+        <Toaster/>
         {showTooltip && (
           <div className="absolute -top-14 bg-white text-sm text-gray-800 px-4 py-2 rounded shadow-md flex items-center space-x-2">
             <span>हर उत्तर देने के लिए माइक को दबाएँ</span>
