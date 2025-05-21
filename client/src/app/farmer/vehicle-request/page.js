@@ -223,7 +223,7 @@ export default function VoiceForm() {
             `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
           );
           await speak("आपका ट्रक आने वाला है, कृपया कुछ समय प्रतीक्षा करें।");
-          window.location.href = "http://127.0.0.1:5000";
+          window.location.href = "https://truckroutenavigator.onrender.com";
         } else {
           alert("डेटा सेव करने में त्रुटि हुई। कृपया पुनः प्रयास करें।");
         }
