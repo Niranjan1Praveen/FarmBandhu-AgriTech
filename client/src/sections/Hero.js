@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function Hero() {
   return (
     <section className="py-24 px-4 flex items-center justify-center overflow-x-clip">
@@ -21,7 +22,7 @@ export default function Hero() {
         </p>
         <div className="flex items-center justify-center mt-8">
           <Button variant="signup" size="sm" className="whitespace-nowrap">
-            शुरू करें
+            <Link href={"/farmer/vehicle-request"}>शुरू करें</Link>
           </Button>
         </div>
       </div>
