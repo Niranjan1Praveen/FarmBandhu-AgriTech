@@ -23,7 +23,6 @@ export default function Navbar() {
                 </h2>
               </div>
 
-              {/* Empty Spacer for alignment (optional on large screens) */}
               <div className="hidden lg:block" />
               {/* Buttons and Menu Icon */}
               <div className="flex justify-end items-center gap-4 col-span-1 lg:col-auto">

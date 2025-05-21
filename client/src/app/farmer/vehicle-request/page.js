@@ -2,25 +2,27 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { Mic, Leaf, Home, Package } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const promptsData = [
   {
     id: "crop",
     text: "फ़सल का नाम",
-    icon: "/img/leaf.svg",
-    color: "bg-yellow-200",
+    icon: Leaf,
+    color: "bg-[var(--chart-1)]",
   },
   {
     id: "market",
     text: "मंडी का नाम",
-    icon: "/img/home.svg",
-    color: "bg-sky-200",
+    icon: Home,
+    color: "bg-[var(--chart-4)]",
   },
   {
     id: "quantity",
     text: "मात्रा किलो या बोरी में",
-    icon: "/img/menu.svg",
-    color: "bg-orange-200",
+    icon: Package,
+    color: "bg-[var(--chart-2)]",
   },
 ];
 
@@ -184,56 +186,51 @@ export default function VoiceForm() {
     await speak("आपका ट्रक आने वाला है कुछ समय के लिए इंतज़ार करे");
   }
   return (
-    <div className="max-w-xl mx-auto mt-10 p-4 font-[Hind]">
+    <div className="max-w-2xl mx-auto mt-20 p-4">
       <div className="flex justify-center mb-6">
         <div
-          className={`p-4 bg-gray-200 rounded-full cursor-pointer border-4 ${
-            listening ? "border-green-500 animate-pulse" : "border-transparent"
+          className={`p-4 bg-gray-200 rounded-full cursor-pointer border-3 ${
+            listening ? "border-indigo-600 animate-pulse" : "border-transparent"
           }`}
           onClick={onMicClick}
         >
-          <Image src="/img/mic.svg" alt="Mic" width={40} height={40} />
+          <Mic className="text-indigo-600" />
         </div>
       </div>
 
       <h1 className="text-2xl font-bold text-center mb-6">बोलिए</h1>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {promptsData.map((prompt, index) => (
           <div
             key={prompt.id}
-            className={`p-4 rounded-xl shadow ${prompt.color} ${
-              index === currentStep ? "ring-2 ring-blue-500" : ""
+            className={`p-4 rounded-xl min-h-[100px] shadow ${prompt.color} ${
+              index === currentStep ? "ring-2 ring-indigo-600" : ""
             }`}
           >
             <div className="flex items-center space-x-4">
-              <Image
-                src={prompt.icon}
-                alt={prompt.text}
-                width={30}
-                height={30}
-              />
+              <prompt.icon className="w-6 h-6" />{" "}
               <span className="font-semibold">{prompt.text}</span>
             </div>
-            <div className="mt-2 text-lg font-medium text-gray-800">
-              {responses[prompt.id]}
+            <div className="mt-2 text-lg font-medium">
+              आपका उत्तर: {responses[prompt.id]}
             </div>
           </div>
         ))}
       </div>
 
-      <button
+      <Button
         onClick={onSubmit}
         disabled={!submitEnabled}
-        className={`mt-6 w-full py-2 px-4 rounded-xl text-white font-semibold transition ${
-          submitEnabled ? "bg-green-600 hover:bg-green-700" : "bg-gray-400"
+        className={`mt-6 mx-auto max-w-sm py-2 px-4 rounded-xl text-white font-semibold transition cursor-pointer ${
+          submitEnabled ? "bg-green-600 hover:bg-green-700" : "bg-gray-400" 
         }`}
       >
         भेजिए ट्रक
-      </button>
+      </Button>
 
       {statusText && (
-        <div className="mt-4 text-center text-sm text-gray-700">
+        <div className="mt-4 text-center text-xl text-gray-700">
           {statusText}
         </div>
       )}
