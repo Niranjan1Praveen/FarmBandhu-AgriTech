@@ -7,22 +7,6 @@ export default function Hero() {
   return (
     <section className="py-24 px-4 flex items-center justify-center overflow-x-clip">
       <div className="container relative">
-        <div className="absolute -left-32 top-16 lg:inline-flex hidden">
-            <Image
-              src={heroDesign}
-              width={600}
-              height={600}
-              className="w-[300px] h-[300px]"
-            />
-          </div>
-          <div className="absolute -right-32 -top-16 lg:inline-flex hidden">
-            <Image
-              src={heroDesign}
-              width={600}
-              height={600}
-              className="w-[250px] h-[250px] -scale-x-100"
-            />
-          </div>
         <div className="flex justify-center">
           <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full text-neutral-950 font-semibold">
             1,000+ किसानों को सशक्त बना रहे हैं
@@ -37,7 +21,13 @@ export default function Hero() {
           समन्वयित करने के लिए सशक्त बनाता है — इसमें वॉयस-आधारित ट्रक बुकिंग,
           रीयल-टाइम रूट ऑप्टिमाइज़ेशन और किफायती अंतिम-मील डिलीवरी एकीकृत हैं।
         </p>
-
+        <Image
+          src={heroDesign}
+          width={600}
+          height={600}
+          className="w-[300px] h-[300px]"
+          alt={"Here Design-1"}
+        />
 
         <div className="flex items-center justify-center mt-8">
           <Button

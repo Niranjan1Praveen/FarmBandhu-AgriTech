@@ -1,11 +1,9 @@
 "use client";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import React, { useEffect, useRef, useState } from "react";
 import { Mic, Leaf, Home, Package, X, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-
 const promptsData = [
   {
     id: "crop",
@@ -44,14 +42,13 @@ export default function VoiceForm() {
   const synthRef = useRef(window.speechSynthesis);
   const voicesRef = useRef([]);
   const stepIndexRef = useRef(0);
-
   const SpeechRecognition =
     typeof window !== "undefined"
       ? window.SpeechRecognition || window.webkitSpeechRecognition
       : null;
   const SpeechSynthesisUtterance =
     typeof window !== "undefined"
-      ? window.SpeechSynthesisUtterance || window.SpeechSynthesisUtterance
+      ? window.SpeechSynthesisUtterance || window.webkitSpeechSynthesisUtterance
       : null;
 
   useEffect(() => {
@@ -211,6 +208,7 @@ export default function VoiceForm() {
             `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
           );
           await speak("आपका ट्रक आने वाला है, कृपया कुछ समय प्रतीक्षा करें।");
+          window.location.href = "http://127.0.0.1:5000";
         } else {
           alert("डेटा सेव करने में त्रुटि हुई। कृपया पुनः प्रयास करें।");
         }
