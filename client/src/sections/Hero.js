@@ -1,5 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import heroDesign from "@/assets/images/heroDesign.jpeg";
 import Link from "next/link";
 export default function Hero() {
   return (
@@ -20,8 +22,11 @@ export default function Hero() {
           समन्वयित करने के लिए सशक्त बनाता है — इसमें वॉयस-आधारित ट्रक बुकिंग,
           रीयल-टाइम रूट ऑप्टिमाइज़ेशन और किफायती अंतिम-मील डिलीवरी एकीकृत हैं।
         </p>
+        <div className="w-full mt-8">
+          <Image src={heroDesign} width={800} height={800} className="mx-auto"/>
+        </div>
         <div className="flex items-center justify-center mt-8">
-          <Button variant="signup" size="sm" className="whitespace-nowrap">
+          <Button variant="signup" size="xl" className="whitespace-nowrap rounded-full">
             <Link href={"/farmer/vehicle-request"}>शुरू करें</Link>
           </Button>
         </div>
