@@ -6,12 +6,6 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
-const navLinks = [
-  { label: "Home", href: "" },
-  { label: "Features", href: "#features" },
-  { label: "Integrations", href: "#integrations" },
-  { label: "FAQs", href: "#faqs" },
-];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,24 +15,18 @@ export default function Navbar() {
         <div className="container max-w-5xl">
           <div className="border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
             <div className="grid grid-cols-2 lg:grid-cols-3 p-2 items-center px-4 md:pr-2">
+              {/* Logo Section */}
               <div className="flex items-center">
-                <Image
-                  src={logo}
-                  alt="Logo Icon"
-                  className="h-10 w-14"
-                />
-                <h2 className="font-bold text-2xl md:inline-flex hidden text-lime-400">DropConnect</h2>
+                <Image src={logo} alt="Logo Icon" className="h-10 w-14" />
+                <h2 className="font-bold text-2xl md:inline-flex hidden">
+                  फ़ार्मबंधु 
+                </h2>
               </div>
-              <div className="lg:flex justify-center items-center hidden">
-                <nav className="flex gap-6 font-medium">
-                  {navLinks.map((link) => (
-                    <a href={link.href} key={link.label}>
-                      {link.label}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-              <div className="flex justify-end gap-4">
+
+              {/* Empty Spacer for alignment (optional on large screens) */}
+              <div className="hidden lg:block" />
+              {/* Buttons and Menu Icon */}
+              <div className="flex justify-end items-center gap-4 col-span-1 lg:col-auto">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -61,14 +49,14 @@ export default function Navbar() {
                       "origin-left transition",
                       isOpen && "rotate-45 -translate-y-1"
                     )}
-                  ></line>
+                  />
                   <line
                     x1="3"
                     y1="12"
                     x2="21"
                     y2="12"
                     className={twMerge("transition", isOpen && "opacity-0")}
-                  ></line>
+                  />
                   <line
                     x1="3"
                     y1="18"
@@ -78,24 +66,25 @@ export default function Navbar() {
                       "origin-left transition",
                       isOpen && "-rotate-45 translate-y-1"
                     )}
-                  ></line>
+                  />
                 </svg>
                 <LoginLink>
                   <Button
                     variant={"login"}
                     className="cursor-pointer hidden md:inline-flex items-center"
                   >
-                    Log in
+                    लॉग इन
                   </Button>
                 </LoginLink>
                 <Button
                   variant={"signup"}
                   className="cursor-pointer hidden md:inline-flex items-center"
                 >
-                  <a href="#signUpOptions">Sign Up</a>
+                  <a href="#signUpOptions">साइन अप</a>
                 </Button>
               </div>
             </div>
+
             <AnimatePresence>
               {isOpen && (
                 <motion.div
@@ -115,14 +104,14 @@ export default function Navbar() {
                         variant={"login"}
                         className="cursor-pointer md:inline-flex items-center"
                       >
-                        Log in
+                        लॉग इन
                       </Button>
                     </LoginLink>
                     <Button
                       variant={"signup"}
                       className="cursor-pointer md:inline-flex items-center"
                     >
-                      <a href="#signUpOptions">Sign Up</a>
+                      <a href="#signUpOptions">साइन अप</a>
                     </Button>
                   </div>
                 </motion.div>

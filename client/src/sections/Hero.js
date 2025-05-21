@@ -1,13 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import design1 from "@/assets/images/design-example-1.png";
-import design2 from "@/assets/images/design-example-2.png";
-
-import Image from "next/image";
 import { useEffect, useState } from "react";
 export default function Hero() {
-  const heroStrong = ["Volunteering", "Community Impact", "Social Good"];
+  const heroStrong = [
+    "Logistics Access",
+    "Voice-First Booking",
+    "Farmer Empowerment",
+  ];
 
   const [currentText, setCurrentText] = useState(heroStrong[0]);
   const [fade, setFade] = useState(true);
@@ -28,20 +28,14 @@ export default function Hero() {
   return (
     <section className="py-24 px-4 flex items-center justify-center overflow-x-clip">
       <div className="container relative">
-        {/* <div className="absolute -left-32 top-16 hidden lg:block z-[-10]">
-          <Image src={design1} alt="hero-design-1-example" />
-        </div>
-        <div className="absolute -right-64 -top-16 hidden lg:block z-[-10]">
-          <Image src={design2} alt="hero-design-2-example" />
-        </div> */}
         <div className="flex justify-center">
           <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full text-neutral-950 font-semibold">
-            Trusted by 100+ NGOs and corporates
+            Empowering 1,000+ Farmers Across Rural India
           </div>
         </div>
 
         <h1 className="text-5xl md:text-6xl font-medium text-center mt-6 max-w-6xl mx-auto leading-[1.15]">
-          Drive Real-World Impact Through Purposeful{" "}
+          Revolutionize Rural Transport With{" "}
           <strong
             className={`transition font-medium fade-up ${
               fade ? "fade-in" : "fade-out"
@@ -52,9 +46,10 @@ export default function Hero() {
         </h1>
 
         <p className="text-center text-xl text-white/50 mt-8 max-w-6xl mx-auto">
-          Our platform empowers students, NGOs, and corporates to collaborate on
-          water resilience projects—combining verified volunteerism, CSR
-          compliance, and community action in one unified ecosystem.
+          Our platform empowers farmers, FPOs, and transporters to coordinate
+          agricultural logistics—combining voice-first truck booking, real-time
+          route optimization, and affordable last-mile delivery in one unified
+          ecosystem.
         </p>
 
         <form className="flex border border-white/15 rounded-full p-2 mt-8 md:max-w-lg mx-auto">

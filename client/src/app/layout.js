@@ -20,8 +20,9 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "DropConnect",
-  description: "Mobilizing youth and CSR for water resilience",
+  title: "FarmBandhu",
+  description:
+    "Voice-first logistics for farmers—affordable, accessible, and AI-powered transport solutions.",
 };
 
 export default function RootLayout({ children }) {
@@ -30,7 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
-          {children}
+        {children}
       </body>
     </html>
   );

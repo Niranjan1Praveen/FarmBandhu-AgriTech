@@ -1,42 +1,42 @@
 export const faqs = [
-    {
-      question: "What is the purpose of this platform?",
-      answer:
-        "Our platform connects students and community volunteers with NGO-led water resilience events, helping corporations fulfill CSR mandates under Schedule VII with verifiable impact tracking.",
-    },
-    {
-      question: "Who can use this platform?",
-      answer:
-        "The platform is designed for students seeking volunteering experience, NGOs organizing water conservation events, and corporate CSR teams tracking ESG and BRSR compliance.",
-    },
-    {
-      question: "How do students benefit from participating?",
-      answer:
-        "Students earn points, badges, and leaderboard ranks. Verified participation unlocks access to internships, mentorship sessions with industry leaders, and official certificates.",
-    },
-    {
-      question: "How are volunteers matched with events?",
-      answer:
-        "Our matching engine uses a volunteer’s location, interests, and skills to recommend suitable events. Check-ins at events are done via QR code or geo-tag for authenticity.",
-    },
-    {
-      question: "How do corporates track CSR impact?",
-      answer:
-        "Corporates get real-time dashboards showing impact metrics such as volunteer hours, environmental outcomes (like trees planted), and downloadable media kits for reporting.",
-    },
-    {
-      question: "How do NGOs manage their events?",
-      answer:
-        "NGOs can list events, assign volunteer roles, reschedule or cancel them, and track volunteer turnout and impact data through their dedicated dashboards.",
-    },
-    {
-      question: "Is the data secure?",
-      answer:
-        "We follow best practices with OAuth 2.0 authentication, AES-256 data encryption, TLS 1.3 for secure communication, and GDPR-compliant privacy policies.",
-    },
-    {
-      question: "Will more features be added in the future?",
-      answer:
-        "Yes! Upcoming features include AI-driven volunteer engagement suggestions, blockchain-based impact tracking, and integration with university credit systems.",
-    },
-  ];
+  {
+    question: "What is the purpose of this platform?",
+    answer:
+      "Our platform enables farmers to book affordable truck transport using voice commands in their local language, reducing delays, spoilage, and high logistics costs.",
+  },
+  {
+    question: "Who can use this platform?",
+    answer:
+      "The platform is built for smallholder farmers, FPOs (Farmer Producer Organizations), transporters, and buyers looking to streamline last-mile agricultural logistics.",
+  },
+  {
+    question: "How do farmers book a truck?",
+    answer:
+      "Farmers simply speak their request using our voice-driven interface. The system understands the request, finds nearby trucks, and confirms the booking—no typing required.",
+  },
+  {
+    question: "How does the voice system work?",
+    answer:
+      "We use the Gemini API to understand local-language voice inputs. These are converted into structured requests, matched with drivers, and routed through an optimized algorithm.",
+  },
+  {
+    question: "How are drivers matched and routes optimized?",
+    answer:
+      "Our backend uses decision-tree logic and Vertex AI models to match drivers in real time and determine the shortest, most cost-effective delivery routes.",
+  },
+  {
+    question: "Can the platform work in low network areas?",
+    answer:
+      "Yes, the app is optimized for rural, low-connectivity areas with offline-first features and fallback SMS/WhatsApp confirmations when possible.",
+  },
+  {
+    question: "Is the service secure?",
+    answer:
+      "Yes, we use JWT authentication, AES encryption, and TLS protocols to ensure all user and logistics data is securely stored and transmitted.",
+  },
+  {
+    question: "What features are coming soon?",
+    answer:
+      "Future updates include support for more regional languages, integration with government mandi APIs, and sustainability insights for route planning.",
+  },
+];
