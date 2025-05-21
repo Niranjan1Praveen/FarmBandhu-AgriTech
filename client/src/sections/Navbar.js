@@ -16,8 +16,8 @@ export default function Navbar() {
           <div className="border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
             <div className="grid grid-cols-2 lg:grid-cols-3 p-2 items-center px-4 md:pr-2">
               {/* Logo Section */}
-              <div className="flex items-center">
-                <Image src={logo} alt="Logo Icon" className="h-10 w-14" />
+              <div className="flex items-center gap-2">
+                <Image src={logo} alt="Logo Icon" className="h-15 w-17" />
                 <h2 className="font-bold text-2xl md:inline-flex hidden">
                   फ़ार्मबंधु 
                 </h2>

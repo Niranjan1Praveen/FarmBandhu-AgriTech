@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { Mic, Leaf, Home, Package } from "lucide-react";
+import { Mic, Leaf, Home, Package, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const promptsData = [
   {
@@ -27,6 +27,8 @@ const promptsData = [
 ];
 
 export default function VoiceForm() {
+  const [showTooltip, setShowTooltip] = useState(true);
+
   const [currentStep, setCurrentStep] = useState(0);
   const [responses, setResponses] = useState({
     crop: "",
@@ -168,8 +170,9 @@ export default function VoiceForm() {
     setResponses({ crop: "", market: "", quantity: "" });
     setSubmitEnabled(false);
     setStatusText("");
-    await speak("कृपया अपनी फसल, मंडी और मात्रा बताएं");
-    await speak(promptsData[0].text);
+    await speak(
+      "कृपया अपनी फसल, मंडी और मात्रा बताएं। अब बताएं " + promptsData[0].text
+    );
     startListening(promptsData[0].id);
   }
 
@@ -187,14 +190,27 @@ export default function VoiceForm() {
   }
   return (
     <div className="max-w-2xl mx-auto mt-20 p-4">
-      <div className="flex justify-center mb-6">
+      <div className="flex flex-col items-center mb-6 relative">
+        {showTooltip && (
+          <div className="absolute -top-14 bg-white text-sm text-gray-800 px-4 py-2 rounded shadow-md flex items-center space-x-2">
+            <span>हर उत्तर देने के लिए माइक को दबाएँ</span>
+            <button
+              onClick={() => setShowTooltip(false)}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              <X className="w-4 h-4 cursor-pointer" />
+            </button>
+          </div>
+        )}
+
+        {/* Mic Button */}
         <div
-          className={`p-4 bg-gray-200 rounded-full cursor-pointer border-3 ${
+          className={`p-4 bg-gray-200 rounded-full cursor-pointer border-4 transition ${
             listening ? "border-indigo-600 animate-pulse" : "border-transparent"
           }`}
           onClick={onMicClick}
         >
-          <Mic className="text-indigo-600" />
+          <Mic className="text-indigo-600 w-6 h-6" />
         </div>
       </div>
 
@@ -202,9 +218,9 @@ export default function VoiceForm() {
 
       <div className="space-y-6">
         {promptsData.map((prompt, index) => (
-          <div
+          <Card
             key={prompt.id}
-            className={`p-4 rounded-xl min-h-[100px] shadow ${prompt.color} ${
+            className={`p-4 rounded-xl min-h-[100px] shadow  ${
               index === currentStep ? "ring-2 ring-indigo-600" : ""
             }`}
           >
@@ -213,21 +229,23 @@ export default function VoiceForm() {
               <span className="font-semibold">{prompt.text}</span>
             </div>
             <div className="mt-2 text-lg font-medium">
-              आपका उत्तर: {responses[prompt.id]}
+              {responses[prompt.id] && `आपका उत्तर: ${responses[prompt.id]}`}
             </div>
-          </div>
+          </Card>
         ))}
       </div>
 
-      <Button
-        onClick={onSubmit}
-        disabled={!submitEnabled}
-        className={`mt-6 mx-auto max-w-sm py-2 px-4 rounded-xl text-white font-semibold transition cursor-pointer ${
-          submitEnabled ? "bg-green-600 hover:bg-green-700" : "bg-gray-400" 
-        }`}
-      >
-        भेजिए ट्रक
-      </Button>
+      <div className="flex items-center justify-center">
+        <Button
+          onClick={onSubmit}
+          disabled={!submitEnabled}
+          className={`mt-6 max-w-sm py-2 px-4 rounded-xl font-semibold transition cursor-pointer ${
+            submitEnabled ? "bg-indigo-600 hover:bg-indigo-700 text-white" : "bg-gray-400"
+          }`}
+        >
+          भेजिए ट्रक
+        </Button>
+      </div>
 
       {statusText && (
         <div className="mt-4 text-center text-xl text-gray-700">
