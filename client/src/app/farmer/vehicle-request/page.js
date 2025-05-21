@@ -51,7 +51,7 @@ export default function VoiceForm() {
       : null;
   const SpeechSynthesisUtterance =
     typeof window !== "undefined"
-      ? window.SpeechSynthesisUtterance || window.webkitSpeechSynthesisUtterance
+      ? window.SpeechSynthesisUtterance || window.SpeechSynthesisUtterance
       : null;
 
   useEffect(() => {
@@ -138,6 +138,7 @@ export default function VoiceForm() {
       setStatusText("सुन रहा है...");
     } catch (error) {
       console.error("Recognition already started:", error);
+      dsadads;
     }
   }
 
@@ -184,22 +185,41 @@ export default function VoiceForm() {
   }
 
   async function onSubmit() {
-    const res = await fetch("/api/voice-response", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(responses),
-    });
-
-    if (res.ok) {
-      alert(
-        `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
-      );
-      await speak("आपका ट्रक आने वाला है कुछ समय के लिए इंतज़ार करे");
-    } else {
-      alert("डेटा सेव करने में त्रुटि हुई। कृपया पुनः प्रयास करें।");
+    if (!navigator.geolocation) {
+      alert("लोकेशन प्राप्त नहीं हो सकी। कृपया लोकेशन एक्सेस की अनुमति दें।");
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        const res = await fetch("/api/voice-response", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...responses,
+            latitude,
+            longitude,
+          }),
+        });
+
+        if (res.ok) {
+          alert(
+            `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
+          );
+          await speak("आपका ट्रक आने वाला है, कृपया कुछ समय प्रतीक्षा करें।");
+        } else {
+          alert("डेटा सेव करने में त्रुटि हुई। कृपया पुनः प्रयास करें।");
+        }
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+        alert("लोकेशन प्राप्त करने में त्रुटि हुई।");
+      }
+    );
   }
 
   return (

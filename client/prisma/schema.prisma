@@ -33,5 +33,7 @@ model VoiceResponse {
   crop      String
   market    String
   quantity  String
+  Latitude  Float?
+  Longitude Float?
   createdAt DateTime @default(now())
 }

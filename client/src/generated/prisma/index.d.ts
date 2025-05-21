@@ -3170,8 +3170,20 @@ export namespace Prisma {
 
   export type AggregateVoiceResponse = {
     _count: VoiceResponseCountAggregateOutputType | null
+    _avg: VoiceResponseAvgAggregateOutputType | null
+    _sum: VoiceResponseSumAggregateOutputType | null
     _min: VoiceResponseMinAggregateOutputType | null
     _max: VoiceResponseMaxAggregateOutputType | null
+  }
+
+  export type VoiceResponseAvgAggregateOutputType = {
+    Latitude: number | null
+    Longitude: number | null
+  }
+
+  export type VoiceResponseSumAggregateOutputType = {
+    Latitude: number | null
+    Longitude: number | null
   }
 
   export type VoiceResponseMinAggregateOutputType = {
@@ -3179,6 +3191,8 @@ export namespace Prisma {
     crop: string | null
     market: string | null
     quantity: string | null
+    Latitude: number | null
+    Longitude: number | null
     createdAt: Date | null
   }
 
@@ -3187,6 +3201,8 @@ export namespace Prisma {
     crop: string | null
     market: string | null
     quantity: string | null
+    Latitude: number | null
+    Longitude: number | null
     createdAt: Date | null
   }
 
@@ -3195,16 +3211,30 @@ export namespace Prisma {
     crop: number
     market: number
     quantity: number
+    Latitude: number
+    Longitude: number
     createdAt: number
     _all: number
   }
 
+
+  export type VoiceResponseAvgAggregateInputType = {
+    Latitude?: true
+    Longitude?: true
+  }
+
+  export type VoiceResponseSumAggregateInputType = {
+    Latitude?: true
+    Longitude?: true
+  }
 
   export type VoiceResponseMinAggregateInputType = {
     id?: true
     crop?: true
     market?: true
     quantity?: true
+    Latitude?: true
+    Longitude?: true
     createdAt?: true
   }
 
@@ -3213,6 +3243,8 @@ export namespace Prisma {
     crop?: true
     market?: true
     quantity?: true
+    Latitude?: true
+    Longitude?: true
     createdAt?: true
   }
 
@@ -3221,6 +3253,8 @@ export namespace Prisma {
     crop?: true
     market?: true
     quantity?: true
+    Latitude?: true
+    Longitude?: true
     createdAt?: true
     _all?: true
   }
@@ -3263,6 +3297,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: VoiceResponseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VoiceResponseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: VoiceResponseMinAggregateInputType
@@ -3293,6 +3339,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: VoiceResponseCountAggregateInputType | true
+    _avg?: VoiceResponseAvgAggregateInputType
+    _sum?: VoiceResponseSumAggregateInputType
     _min?: VoiceResponseMinAggregateInputType
     _max?: VoiceResponseMaxAggregateInputType
   }
@@ -3302,8 +3350,12 @@ export namespace Prisma {
     crop: string
     market: string
     quantity: string
+    Latitude: number | null
+    Longitude: number | null
     createdAt: Date
     _count: VoiceResponseCountAggregateOutputType | null
+    _avg: VoiceResponseAvgAggregateOutputType | null
+    _sum: VoiceResponseSumAggregateOutputType | null
     _min: VoiceResponseMinAggregateOutputType | null
     _max: VoiceResponseMaxAggregateOutputType | null
   }
@@ -3327,6 +3379,8 @@ export namespace Prisma {
     crop?: boolean
     market?: boolean
     quantity?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["voiceResponse"]>
 
@@ -3335,6 +3389,8 @@ export namespace Prisma {
     crop?: boolean
     market?: boolean
     quantity?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["voiceResponse"]>
 
@@ -3343,6 +3399,8 @@ export namespace Prisma {
     crop?: boolean
     market?: boolean
     quantity?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["voiceResponse"]>
 
@@ -3351,10 +3409,12 @@ export namespace Prisma {
     crop?: boolean
     market?: boolean
     quantity?: boolean
+    Latitude?: boolean
+    Longitude?: boolean
     createdAt?: boolean
   }
 
-  export type VoiceResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "crop" | "market" | "quantity" | "createdAt", ExtArgs["result"]["voiceResponse"]>
+  export type VoiceResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "crop" | "market" | "quantity" | "Latitude" | "Longitude" | "createdAt", ExtArgs["result"]["voiceResponse"]>
 
   export type $VoiceResponsePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "VoiceResponse"
@@ -3364,6 +3424,8 @@ export namespace Prisma {
       crop: string
       market: string
       quantity: string
+      Latitude: number | null
+      Longitude: number | null
       createdAt: Date
     }, ExtArgs["result"]["voiceResponse"]>
     composites: {}
@@ -3792,6 +3854,8 @@ export namespace Prisma {
     readonly crop: FieldRef<"VoiceResponse", 'String'>
     readonly market: FieldRef<"VoiceResponse", 'String'>
     readonly quantity: FieldRef<"VoiceResponse", 'String'>
+    readonly Latitude: FieldRef<"VoiceResponse", 'Float'>
+    readonly Longitude: FieldRef<"VoiceResponse", 'Float'>
     readonly createdAt: FieldRef<"VoiceResponse", 'DateTime'>
   }
     
@@ -4203,6 +4267,8 @@ export namespace Prisma {
     crop: 'crop',
     market: 'market',
     quantity: 'quantity',
+    Latitude: 'Latitude',
+    Longitude: 'Longitude',
     createdAt: 'createdAt'
   };
 
@@ -4428,6 +4494,8 @@ export namespace Prisma {
     crop?: StringFilter<"VoiceResponse"> | string
     market?: StringFilter<"VoiceResponse"> | string
     quantity?: StringFilter<"VoiceResponse"> | string
+    Latitude?: FloatNullableFilter<"VoiceResponse"> | number | null
+    Longitude?: FloatNullableFilter<"VoiceResponse"> | number | null
     createdAt?: DateTimeFilter<"VoiceResponse"> | Date | string
   }
 
@@ -4436,6 +4504,8 @@ export namespace Prisma {
     crop?: SortOrder
     market?: SortOrder
     quantity?: SortOrder
+    Latitude?: SortOrderInput | SortOrder
+    Longitude?: SortOrderInput | SortOrder
     createdAt?: SortOrder
   }
 
@@ -4447,6 +4517,8 @@ export namespace Prisma {
     crop?: StringFilter<"VoiceResponse"> | string
     market?: StringFilter<"VoiceResponse"> | string
     quantity?: StringFilter<"VoiceResponse"> | string
+    Latitude?: FloatNullableFilter<"VoiceResponse"> | number | null
+    Longitude?: FloatNullableFilter<"VoiceResponse"> | number | null
     createdAt?: DateTimeFilter<"VoiceResponse"> | Date | string
   }, "id">
 
@@ -4455,10 +4527,14 @@ export namespace Prisma {
     crop?: SortOrder
     market?: SortOrder
     quantity?: SortOrder
+    Latitude?: SortOrderInput | SortOrder
+    Longitude?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: VoiceResponseCountOrderByAggregateInput
+    _avg?: VoiceResponseAvgOrderByAggregateInput
     _max?: VoiceResponseMaxOrderByAggregateInput
     _min?: VoiceResponseMinOrderByAggregateInput
+    _sum?: VoiceResponseSumOrderByAggregateInput
   }
 
   export type VoiceResponseScalarWhereWithAggregatesInput = {
@@ -4469,6 +4545,8 @@ export namespace Prisma {
     crop?: StringWithAggregatesFilter<"VoiceResponse"> | string
     market?: StringWithAggregatesFilter<"VoiceResponse"> | string
     quantity?: StringWithAggregatesFilter<"VoiceResponse"> | string
+    Latitude?: FloatNullableWithAggregatesFilter<"VoiceResponse"> | number | null
+    Longitude?: FloatNullableWithAggregatesFilter<"VoiceResponse"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"VoiceResponse"> | Date | string
   }
 
@@ -4604,6 +4682,8 @@ export namespace Prisma {
     crop: string
     market: string
     quantity: string
+    Latitude?: number | null
+    Longitude?: number | null
     createdAt?: Date | string
   }
 
@@ -4612,6 +4692,8 @@ export namespace Prisma {
     crop: string
     market: string
     quantity: string
+    Latitude?: number | null
+    Longitude?: number | null
     createdAt?: Date | string
   }
 
@@ -4620,6 +4702,8 @@ export namespace Prisma {
     crop?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     quantity?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4628,6 +4712,8 @@ export namespace Prisma {
     crop?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     quantity?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4636,6 +4722,8 @@ export namespace Prisma {
     crop: string
     market: string
     quantity: string
+    Latitude?: number | null
+    Longitude?: number | null
     createdAt?: Date | string
   }
 
@@ -4644,6 +4732,8 @@ export namespace Prisma {
     crop?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     quantity?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4652,6 +4742,8 @@ export namespace Prisma {
     crop?: StringFieldUpdateOperationsInput | string
     market?: StringFieldUpdateOperationsInput | string
     quantity?: StringFieldUpdateOperationsInput | string
+    Latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    Longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4844,7 +4936,14 @@ export namespace Prisma {
     crop?: SortOrder
     market?: SortOrder
     quantity?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type VoiceResponseAvgOrderByAggregateInput = {
+    Latitude?: SortOrder
+    Longitude?: SortOrder
   }
 
   export type VoiceResponseMaxOrderByAggregateInput = {
@@ -4852,6 +4951,8 @@ export namespace Prisma {
     crop?: SortOrder
     market?: SortOrder
     quantity?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -4860,7 +4961,14 @@ export namespace Prisma {
     crop?: SortOrder
     market?: SortOrder
     quantity?: SortOrder
+    Latitude?: SortOrder
+    Longitude?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type VoiceResponseSumOrderByAggregateInput = {
+    Latitude?: SortOrder
+    Longitude?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {

@@ -144,6 +144,8 @@ exports.Prisma.VoiceResponseScalarFieldEnum = {
   crop: 'crop',
   market: 'market',
   quantity: 'quantity',
+  Latitude: 'Latitude',
+  Longitude: 'Longitude',
   createdAt: 'createdAt'
 };
 
