@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Mic, Leaf, Home, Package, X, Terminal } from "lucide-react";
+import { Mic, Leaf, Home, Package, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { toast, Toaster } from "sonner";
+
 const promptsData = [
   {
     id: "crop",
@@ -28,7 +28,6 @@ const promptsData = [
 
 export default function VoiceForm() {
   const [showTooltip, setShowTooltip] = useState(true);
-
   const [currentStep, setCurrentStep] = useState(0);
   const [responses, setResponses] = useState({
     crop: "",
@@ -40,9 +39,10 @@ export default function VoiceForm() {
   const [submitEnabled, setSubmitEnabled] = useState(false);
 
   const recognitionRef = useRef(null);
-  const synthRef = useRef(window.speechSynthesis);
+  const synthRef = useRef(null);
   const voicesRef = useRef([]);
   const stepIndexRef = useRef(0);
+
   const SpeechRecognition =
     typeof window !== "undefined"
       ? window.SpeechRecognition || window.webkitSpeechRecognition
@@ -60,21 +60,28 @@ export default function VoiceForm() {
       return;
     }
 
-    voicesRef.current = synthRef.current.getVoices();
-    if (voicesRef.current.length === 0) {
-      synthRef.current.onvoiceschanged = () => {
-        voicesRef.current = synthRef.current.getVoices();
-      };
+    synthRef.current = window.speechSynthesis;
+
+    const loadVoices = () => {
+      const voices = synthRef.current.getVoices();
+      if (voices.length > 0) {
+        voicesRef.current = voices;
+      }
+    };
+
+    loadVoices();
+    if (typeof window !== "undefined") {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
     }
 
-    recognitionRef.current = new SpeechRecognition();
-    recognitionRef.current.lang = "hi-IN";
-    recognitionRef.current.continuous = false;
-    recognitionRef.current.interimResults = false;
+    const recognition = new SpeechRecognition();
+    recognition.lang = "hi-IN";
+    recognition.continuous = false;
+    recognition.interimResults = false;
 
-    recognitionRef.current.onresult = (event) => {
+    recognition.onresult = (event) => {
       const speechResult = event.results[0][0].transcript;
-      const stepKey = recognitionRef.current.stepKey;
+      const stepKey = recognition.stepKey;
 
       setResponses((prev) => ({
         ...prev,
@@ -85,7 +92,7 @@ export default function VoiceForm() {
       moveToNextStep();
     };
 
-    recognitionRef.current.onerror = (event) => {
+    recognition.onerror = (event) => {
       console.error("Speech recognition error:", event.error);
       setStatusText(`त्रुटि: ${event.error}`);
       setListening(false);
@@ -94,9 +101,11 @@ export default function VoiceForm() {
       }, 1000);
     };
 
-    recognitionRef.current.onend = () => {
+    recognition.onend = () => {
       setListening(false);
     };
+
+    recognitionRef.current = recognition;
 
     setTimeout(() => {
       initApp();
@@ -104,7 +113,7 @@ export default function VoiceForm() {
   }, []);
 
   async function speak(text) {
-    if (!SpeechSynthesisUtterance) return;
+    if (!SpeechSynthesisUtterance || !synthRef.current) return;
 
     return new Promise((resolve) => {
       let hindiVoice = voicesRef.current.find(
@@ -123,31 +132,36 @@ export default function VoiceForm() {
       utterance.pitch = 1;
       utterance.volume = 1;
       utterance.onend = resolve;
+
+      synthRef.current.cancel();
       synthRef.current.speak(utterance);
     });
   }
 
   function startListening(stepKey) {
-    if (!recognitionRef.current) return;
+    const recognition = recognitionRef.current;
+    if (!recognition || listening) return;
+
     try {
-      recognitionRef.current.stepKey = stepKey;
-      recognitionRef.current.start();
+      recognition.stepKey = stepKey;
+      recognition.start();
       setListening(true);
       setStatusText("सुन रहा है...");
     } catch (error) {
-      console.error("Recognition already started:", error);
-      dsadads;
+      console.warn("Speech recognition start error:", error);
     }
   }
 
   function stopListening() {
-    if (!recognitionRef.current) return;
+    const recognition = recognitionRef.current;
+    if (!recognition) return;
+
     try {
-      recognitionRef.current.stop();
+      recognition.stop();
       setListening(false);
       setStatusText("");
     } catch (error) {
-      console.error("Recognition already stopped:", error);
+      console.error("Recognition stop error:", error);
     }
   }
 
@@ -205,7 +219,7 @@ export default function VoiceForm() {
         });
 
         if (res.ok) {
-          toast(
+          alert(
             `आपका अनुरोध भेजा गया है:\nफसल: ${responses.crop}\nमंडी: ${responses.market}\nमात्रा: ${responses.quantity}`
           );
           await speak("आपका ट्रक आने वाला है, कृपया कुछ समय प्रतीक्षा करें।");
@@ -224,7 +238,6 @@ export default function VoiceForm() {
   return (
     <div className="max-w-2xl mx-auto mt-20 p-4">
       <div className="flex flex-col items-center mb-6 relative">
-        <Toaster/>
         {showTooltip && (
           <div className="absolute -top-14 bg-white text-sm text-gray-800 px-4 py-2 rounded shadow-md flex items-center space-x-2">
             <span>हर उत्तर देने के लिए माइक को दबाएँ</span>
@@ -237,7 +250,6 @@ export default function VoiceForm() {
           </div>
         )}
 
-        {/* Mic Button */}
         <div
           className={`p-4 bg-gray-200 rounded-full cursor-pointer border-4 transition ${
             listening ? "border-indigo-600 animate-pulse" : "border-transparent"
@@ -254,12 +266,12 @@ export default function VoiceForm() {
         {promptsData.map((prompt, index) => (
           <Card
             key={prompt.id}
-            className={`p-4 rounded-xl min-h-[100px] shadow  ${
+            className={`p-4 rounded-xl min-h-[100px] shadow ${
               index === currentStep ? "ring-2 ring-indigo-600" : ""
             }`}
           >
             <div className="flex items-center space-x-4">
-              <prompt.icon className="w-6 h-6" />{" "}
+              <prompt.icon className="w-6 h-6" />
               <span className="font-semibold">{prompt.text}</span>
             </div>
             <div className="mt-2 text-lg font-medium">
