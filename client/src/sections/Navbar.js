@@ -6,7 +6,7 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
-
+// fdsfs
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
