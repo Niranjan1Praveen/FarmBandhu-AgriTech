@@ -6,6 +6,7 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
+import Link from "next/link";
 // fdsfs
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <Image src={logo} alt="Logo Icon" className="h-13 w-15" />
                 <h2 className="font-bold text-2xl md:inline-flex hidden">
-                  फ़ार्मबंधु 
+                  फ़ार्मबंधु
                 </h2>
               </div>
 
@@ -79,7 +80,7 @@ export default function Navbar() {
                   variant={"signup"}
                   className="cursor-pointer hidden md:inline-flex items-center"
                 >
-                  <a href="#signUpOptions">साइन अप</a>
+                  <Link href={"/farmer/vehicle-request"}>शुरू करें</Link>
                 </Button>
               </div>
             </div>
@@ -105,7 +106,7 @@ export default function Navbar() {
                       variant={"signup"}
                       className="cursor-pointer md:inline-flex items-center"
                     >
-                      <a href="#signUpOptions">साइन अप</a>
+                      <Link href={"/farmer/vehicle-request"}>शुरू करें</Link>
                     </Button>
                   </div>
                 </motion.div>

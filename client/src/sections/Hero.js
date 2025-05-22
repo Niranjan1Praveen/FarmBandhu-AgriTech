@@ -12,7 +12,7 @@ export default function Hero() {
             1,000+ किसानों को सशक्त बना रहे हैं
           </div>
         </div>
-        <h1 className="text-5xl md:text-6xl font-medium text-center mt-6 max-w-6xl mx-auto leading-relaxed">
+        <h1 className="text-5xl md:text-6xl font-medium text-center mt-6 max-w-5xl mx-auto leading-relaxed">
           लॉजिस्टिक्स सुविधा के साथ ग्रामीण परिवहन में क्रांति लाएं{" "}
         </h1>
 
