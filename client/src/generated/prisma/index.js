@@ -154,7 +154,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\nithi\\Desktop\\FarmBandhu\\client\\src\\generated\\prisma",
+      "value": "/Users/serb9/Desktop/FarmBandhu-AgriTech/client/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -163,8 +163,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "windows"
       },
       {
         "fromEnvVar": null,
@@ -172,12 +176,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\nithi\\Desktop\\FarmBandhu\\client\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/serb9/Desktop/FarmBandhu-AgriTech/client/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.8.1",
@@ -195,8 +198,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"darwin-arm64\"]\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel MandiLatLong {\n  id          Int    @id @default(autoincrement())\n  State       String\n  Mandi       String\n  Mandi_Hindi String\n  Latitude    Float?\n  Longitude   Float?\n}\n\nmodel Truck {\n  id                    Int    @id @default(autoincrement())\n  State                 String\n  TruckDriverName       String\n  TruckDriverName_Hindi String\n  TruckNumberPlate      String @unique\n  Latitude              Float?\n  Longitude             Float?\n}\n\nmodel VoiceResponse {\n  id        String   @id @default(cuid())\n  crop      String\n  market    String\n  quantity  String\n  Latitude  Float?\n  Longitude Float?\n  createdAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "d40bff35b21b18b4a57289ac6c4730efdde241b5a2f8fedeb5ff4adf37c0e1fe",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"windows\", \"darwin-arm64\"]\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel MandiLatLong {\n  id          Int    @id @default(autoincrement())\n  State       String\n  Mandi       String\n  Mandi_Hindi String\n  Latitude    Float?\n  Longitude   Float?\n}\n\nmodel Truck {\n  id                    Int    @id @default(autoincrement())\n  State                 String\n  TruckDriverName       String\n  TruckDriverName_Hindi String\n  TruckNumberPlate      String @unique\n  Latitude              Float?\n  Longitude             Float?\n}\n\nmodel VoiceResponse {\n  id        String   @id @default(cuid())\n  crop      String\n  market    String\n  quantity  String\n  Latitude  Float?\n  Longitude Float?\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "7575789a6bdc7388b5f189ad2ccf2474d4826f25b8ee12416e0350d0de93a241",
   "copyEngine": true
 }
 
@@ -233,6 +236,10 @@ warnEnvConflicts({
 const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-darwin.dylib.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-darwin.dylib.node")
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
